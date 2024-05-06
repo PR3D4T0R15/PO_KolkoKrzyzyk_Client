@@ -1,12 +1,35 @@
-﻿# CMakeList.txt: projekt CMake dla elementu PO_KolkoKrzyzyk_Client, dołącz źródło i zdefiniuj
-# tutaj logikę specyficzną dla projektu.
-#
+cmake_minimum_required(VERSION 3.16)
 
-# Dodaj źródło do pliku wykonywalnego tego projektu.
-add_executable (PO_KolkoKrzyzyk_Client "PO_KolkoKrzyzyk_Client.cpp" "PO_KolkoKrzyzyk_Client.h")
+project("KolkoKrzyzyk" VERSION 1.0.0 LANGUAGES CXX)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET PO_KolkoKrzyzyk_Client PROPERTY CXX_STANDARD 20)
-endif()
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# TODO: Dodaj testy i zainstaluj elementy docelowe w razie potrzeby.
+## Qt ##
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+
+## Qt PACKAGES ##
+find_package(Qt6 REQUIRED COMPONENTS Gui)
+find_package(Qt6 REQUIRED COMPONENTS Qml)
+
+## Qt project setup ##
+qt_standard_project_setup()
+
+## Qt ADD EXE ##
+qt_add_executable("${PROJECT_NAME}"
+    "src/main.cpp"
+    "include/main.h"
+    "ui/PO_KolkoKrzyzyk_GUI.qrc"
+)
+
+target_link_libraries("${PROJECT_NAME}" PRIVATE Qt6::Gui)
+target_link_libraries("${PROJECT_NAME}" PRIVATE Qt6::Qml)
+
+set_target_properties("${PROJECT_NAME}" PROPERTIES
+    WIN32_EXECUTABLE ON
+    MACOSX_BUNDLE ON
+)
