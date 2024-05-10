@@ -22,7 +22,11 @@ qt_standard_project_setup()
 ## Qt ADD EXE ##
 qt_add_executable("${PROJECT_NAME}"
     "src/main.cpp"
+    "src/WindowControl.cpp"
+    "src/GameControl.cpp"
     "include/main.h"
+    "include/WindowControl.h"
+    "include/GameControl.h"
     "ui/PO_KolkoKrzyzyk_GUI.qrc"
 )
 

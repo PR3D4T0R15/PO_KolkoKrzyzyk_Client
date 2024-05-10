@@ -15,4 +15,11 @@ Window {
     minimumHeight: 700
     modality: Qt.ApplicationModal
     color: "#ffcf99"
+
+    Image {
+        id: about_info
+        anchors.fill: parent
+        source: "images/about_info.png"
+        fillMode: Image.PreserveAspectFit
+    }
 }

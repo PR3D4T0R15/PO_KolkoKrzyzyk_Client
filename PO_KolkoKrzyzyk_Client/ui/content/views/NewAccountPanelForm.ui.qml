@@ -29,6 +29,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 62
         horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Login")
         background: Rectangle {
@@ -44,6 +45,7 @@ Item {
         width: 296
         anchors.top: loginField.bottom
         anchors.topMargin: 25
+        verticalAlignment: Text.AlignVCenter
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Hasło")
         background: Rectangle {
@@ -59,6 +61,7 @@ Item {
         width: 296
         anchors.top: passField.bottom
         anchors.topMargin: 10
+        verticalAlignment: Text.AlignVCenter
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Powtórz Hasło")
         background: Rectangle {

@@ -28,6 +28,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 82
         horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
         placeholderTextColor: "#88373535"
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Login")
@@ -45,6 +46,7 @@ Item {
         height: 40
         anchors.top: loginField.bottom
         anchors.topMargin: 25
+        verticalAlignment: Text.AlignVCenter
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Hasło")
         background: Rectangle {

@@ -59,6 +59,7 @@ Item {
 
                 BigButton {
                     id: bigButton
+                    hoverEnabled: false
                     implicitWidth: 240
                     implicitHeight: 110
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
