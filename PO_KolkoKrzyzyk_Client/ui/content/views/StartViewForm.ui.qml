@@ -15,6 +15,7 @@ Item {
     width: 1280
     height: 720
     anchors.fill: parent
+    property alias errorText: errorText
     property alias bigButton: bigButton
 
     GridLayout {
@@ -62,6 +63,15 @@ Item {
                     hoverEnabled: false
                     implicitWidth: 240
                     implicitHeight: 110
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                }
+
+                Text {
+                    id: errorText
+                    color: "#920014"
+                    text: qsTr("Brak połączenia z serwerem")
+                    font.pixelSize: 14
+                    font.bold: true
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
             }

@@ -11,7 +11,8 @@ Window {
     height: 720
     minimumWidth: 720
     minimumHeight: 480
-    visibility: Window.Maximized
+    //visibility: Window.Maximized
+    visible: true
 
     color: "#ffcf99"
 
@@ -22,8 +23,20 @@ Window {
         //anchors.top: parent.top
         anchors.bottom: parent.bottom
         layoutDirection: Qt.RightToLeft
-        spacing: 5
+        spacing: 0
         width: 39
+
+        SoundControl {
+            id: soundControl
+            implicitWidth: 39
+            implicitHeight: 39
+            Layout.fillHeight: false
+            Layout.fillWidth: false
+            Layout.alignment: Qt.AlignBottom
+            onClicked: {
+                sound.buttonClickSound.play()
+            }
+        }
 
         AboutButton {
             id: aboutButton
@@ -58,20 +71,27 @@ Window {
         anchors.topMargin: 20
         anchors.bottomMargin: 20
 
-        initialItem: startView
+        initialItem: gameView
     }
     //stackedView views
     StartView {
         id: startView
         visible: false
-        bigButton {
-            onClicked: {
-                stackView.replace(loginView)
-            }
-        }
     }
     LoginView {
         id: loginView
+        visible: false
+    }
+    MatchmakingView {
+        id: matchmakingView
+        visible: false
+    }
+    GameView {
+        id: gameView
+        visible: false
+    }
+    EndGameView {
+        id: endGameView
         visible: false
     }
 

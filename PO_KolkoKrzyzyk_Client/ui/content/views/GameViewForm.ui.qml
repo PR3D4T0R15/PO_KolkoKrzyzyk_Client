@@ -7,24 +7,18 @@ this file manually, you might introduce QML code that is not supported by Qt Des
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 import "../controls"
+import "../popups"
 
 Item {
+    id: gameView
     width: 1280
     height: 720
 
     anchors.fill: parent
-    property alias areaC3: areaC3
-    property alias areaC2: areaC2
-    property alias areaC1: areaC1
-    property alias areaB3: areaB3
-    property alias areaA3: areaA3
-    property alias area2A: area2A
-    property alias area1A: area1A
-    property alias areaB1: areaB1
-    property alias areaB2: areaB2
+    property alias timeValue: timeValue
+    property alias gameLeaveButton: gameLeaveButton
 
     GridLayout {
         id: mainLayout
@@ -62,84 +56,84 @@ Item {
                 fillMode: Image.PreserveAspectFit
             }
 
-            MouseArea {
-                id: areaB2
-                width: 170
-                height: 160
+            GameControl {
+                id: gameControlA1
                 anchors.left: parent.left
                 anchors.top: parent.top
-                anchors.leftMargin: 243
-                anchors.topMargin: 196
-            }
-
-            MouseArea {
-                id: areaB1
-                width: 170
-                height: 160
-                anchors.left: parent.left
-                anchors.top: parent.top
-                anchors.leftMargin: 243
-                anchors.topMargin: 17
-            }
-
-            MouseArea {
-                id: area1A
-                width: 170
-                height: 160
-                anchors.left: parent.left
-                anchors.top: parent.top
-                anchors.leftMargin: 48
+                anchors.leftMargin: 50
                 anchors.topMargin: 18
             }
 
-            MouseArea {
-                id: area2A
-                width: 170
-                height: 160
+            GameControl {
+                id: gameControlB1
                 anchors.left: parent.left
                 anchors.top: parent.top
-                anchors.leftMargin: 48
-                anchors.topMargin: 196
+                anchors.leftMargin: 242
+                anchors.topMargin: 18
+                controlLocation: "B1"
             }
 
-            MouseArea {
-                id: areaA3
-                x: 48
-                y: 377
-                width: 170
-                height: 160
+            GameControl {
+                id: gameControlC1
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.leftMargin: 436
+                anchors.topMargin: 18
+                controlLocation: "C1"
             }
 
-            MouseArea {
-                id: areaB3
-                x: 243
-                y: 377
-                width: 170
-                height: 160
+            GameControl {
+                id: gameControlA2
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.leftMargin: 50
+                anchors.topMargin: 195
+                controlLocation: "A2"
             }
 
-            MouseArea {
-                id: areaC1
-                x: 439
-                y: 18
-                width: 170
-                height: 160
+            GameControl {
+                id: gameControlB2
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.leftMargin: 242
+                anchors.topMargin: 195
+                controlLocation: "B2"
             }
 
-            MouseArea {
-                id: areaC2
-                x: 439
-                y: 196
-                width: 170
-                height: 160
+            GameControl {
+                id: gameControlC2
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.leftMargin: 436
+                anchors.topMargin: 195
+                controlLocation: "C2"
             }
 
-            MouseArea {
-                id: areaC3
-                x: 439
-                y: 377
-                width: 170
-                height: 160
+            GameControl {
+                id: gameControlA3
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.leftMargin: 50
+                anchors.topMargin: 375
+                controlLocation: "A3"
+            }
+
+            GameControl {
+                id: gameControlB3
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.leftMargin: 242
+                anchors.topMargin: 375
+                controlLocation: "B3"
+            }
+
+            GameControl {
+                id: gameControlC3
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.leftMargin: 436
+                anchors.topMargin: 375
+                controlLocation: "C3"
             }
         }
 
@@ -156,8 +150,107 @@ Item {
                 radius: 50
                 anchors.fill: parent
             }
+
+            Text {
+                id: time
+                text: qsTr("pozostało:")
+                anchors.top: parent.top
+                anchors.topMargin: 210
+                font.pixelSize: 24
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            Text {
+                id: timeValue
+                color: "#92140c"
+                text: qsTr("15")
+                anchors.top: time.bottom
+                anchors.topMargin: 0
+                font.pixelSize: 48
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            GameLeaveButton {
+                id: gameLeaveButton
+                text: qsTr("Zrezygnuj i wyjdź do MENU")
+                anchors.top: parent.top
+                anchors.topMargin: 342
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            Column {
+                id: column
+                anchors.top: parent.top
+                anchors.topMargin: 12
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Text {
+                    id: text1
+                    width: 200
+                    text: qsTr("")
+                    font.pixelSize: 32
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.weight: Font.DemiBold
+                    font.bold: false
+                }
+
+                Text {
+                    id: text2
+                    width: 200
+                    text: qsTr("")
+                    font.pixelSize: 32
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.weight: Font.DemiBold
+                }
+            }
+
+            Image {
+                id: image
+                x: 135
+                width: 70
+                height: 70
+                anchors.top: parent.top
+                anchors.topMargin: 110
+                source: "../images/o.png"
+                anchors.horizontalCenter: parent.horizontalCenter
+                fillMode: Image.PreserveAspectFit
+            }
         }
+
         columns: 2
         columnSpacing: 0
     }
+
+    GameInfoPopup {
+        id: gameInfoPopup
+        visible: false
+    }
+    states: [
+        State {
+            name: "enemyTurn"
+            PropertyChanges {
+                target: text1
+                text: qsTr("RUCH")
+            }
+            PropertyChanges {
+                target: text2
+                text: qsTr("PRZECIWNIKA!")
+            }
+        },
+        State {
+            name: "yourTurn"
+            PropertyChanges {
+                target: text1
+                text: qsTr("TWÓJ")
+            }
+            PropertyChanges {
+                target: text2
+                text: qsTr("RUCH!")
+            }
+        }
+    ]
 }

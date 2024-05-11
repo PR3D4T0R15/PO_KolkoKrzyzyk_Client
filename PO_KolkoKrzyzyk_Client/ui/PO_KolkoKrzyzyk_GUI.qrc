@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>qtquickcontrols2.conf</file>
+	<file>qtquickcontrols2.conf</file>
         <file>content/controls/AboutButton.ui.qml</file>
         <file>content/controls/AccountButton.ui.qml</file>
         <file>content/controls/BigButton.ui.qml</file>
@@ -41,6 +41,30 @@
         <file>content/views/PlayPanelForm.ui.qml</file>
         <file>content/views/StartView.qml</file>
         <file>content/views/StartViewForm.ui.qml</file>
+        <file>content/controls/CircleImage.ui.qml</file>
+        <file>content/controls/CrossImage.ui.qml</file>
+        <file>content/controls/EndGameButton.ui.qml</file>
+        <file>content/controls/GameControl.qml</file>
+        <file>content/controls/GameLeaveButton.ui.qml</file>
+        <file>content/controls/SoundControl.ui.qml</file>
+        <file>content/dialogs/ExitGameDialog.qml</file>
+        <file>content/images/draw.png</file>
+        <file>content/images/gameover.png</file>
         <file>content/images/ico256x256.png</file>
+        <file>content/images/line_diag_lr.svg</file>
+        <file>content/images/line_diag_rl.svg</file>
+        <file>content/images/line_str_hor.svg</file>
+        <file>content/images/line_str_vert.svg</file>
+        <file>content/images/sound_off.png</file>
+        <file>content/images/sound_on.png</file>
+        <file>content/images/table_image.png</file>
+        <file>content/images/win.png</file>
+        <file>content/popups/GameInfoPopup.qml</file>
+        <file>content/scripts/test.js</file>
+        <file>content/views/DrawPanel.ui.qml</file>
+        <file>content/views/EndGameView.qml</file>
+        <file>content/views/EndGameViewForm.ui.qml</file>
+        <file>content/views/FailPanel.ui.qml</file>
+        <file>content/views/WinPanel.ui.qml</file>
     </qresource>
 </RCC>

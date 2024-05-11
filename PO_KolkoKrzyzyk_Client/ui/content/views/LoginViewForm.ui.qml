@@ -56,7 +56,7 @@ Item {
             id: ranksItem
 
             implicitWidth: 650
-            implicitHeight: 600
+            implicitHeight: 470
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
             Rectangle {
@@ -68,6 +68,36 @@ Item {
 
             TableView {
                 anchors.fill: parent
+            }
+
+            Row {
+                id: row
+                anchors.top: parent.top
+                anchors.topMargin: 25
+                spacing: 15
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Image {
+                    id: table_image
+                    source: "../images/table_image.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+
+                Text {
+                    id: text1
+                    height: 49
+                    text: qsTr("Lista rankingowa")
+                    font.pixelSize: 24
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.bold: true
+                }
+
+                Image {
+                    id: table_image1
+                    source: "../images/table_image.png"
+                    fillMode: Image.PreserveAspectFit
+                }
             }
         }
         columns: 2
