@@ -31,6 +31,8 @@ public slots:
 
 signals:
 	// void IWillCallSth()
+	//void goToStartWindow();
+	void goToLoginWindow();
 
 private:
 };

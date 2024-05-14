@@ -99,4 +99,13 @@ Window {
     SoundsControls {
         id: sound
     }
+
+    //CppQML integration
+    Connections {
+        target: uiControl
+
+        function onGoToLoginWindow(){
+            stackView.push(loginView)
+        }
+    }
 }
