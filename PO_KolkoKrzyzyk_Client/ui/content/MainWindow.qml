@@ -71,7 +71,7 @@ Window {
         anchors.topMargin: 20
         anchors.bottomMargin: 20
 
-        initialItem: gameView
+        initialItem: startView
     }
     //stackedView views
     StartView {

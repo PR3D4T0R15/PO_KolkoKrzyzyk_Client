@@ -1,19 +1,36 @@
 #pragma once
 
 #include <QObject>
+#include <QDebug>
 
 class WindowControl : public QObject
 {
 	Q_OBJECT
 
 public:
-	WindowControl();
+	WindowControl(QObject* parent = nullptr);
 	~WindowControl();
 
 public slots:
 	// void callMe();
-signals:
-	//TODO: dodac sygnaly
-private:
+	//void settingsButton();
+	//void aboutButton();
+	//void volumeButton();
 
+	void enterGameButton();
+	//void logInButton();
+	//void newAccountButton();
+	//void logOutButton();
+	//void exitButton();
+	//void playButton();
+	//void exitQueueButton();
+	//void leaveMatchButton();
+	//void playAgainButton();
+	//void goToMenuButton();
+
+
+signals:
+	// void IWillCallSth()
+
+private:
 };

@@ -7,7 +7,7 @@ class GameControl  : public QObject
 	Q_OBJECT
 
 public:
-	GameControl();
+	GameControl(QObject* parent = nullptr);
 	~GameControl();
 
 public slots:

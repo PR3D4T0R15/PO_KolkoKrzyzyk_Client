@@ -5,6 +5,7 @@ StartViewForm {
     bigButton {
         onClicked: {
             sound.buttonClickSound.play()
+            uiControl.enterGameButton();
         }
     }
 

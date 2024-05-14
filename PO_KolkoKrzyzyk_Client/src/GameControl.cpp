@@ -1,6 +1,6 @@
 #include "include/GameControl.h"
 
-GameControl::GameControl()
+GameControl::GameControl(QObject* parent) : QObject(parent)
 {}
 
 GameControl::~GameControl()
