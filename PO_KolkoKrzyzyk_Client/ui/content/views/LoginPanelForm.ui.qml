@@ -19,40 +19,20 @@ Item {
     property alias passField: passField
     property alias loginField: loginField
 
-    TextField {
+    CustomTextField {
         id: loginField
-        x: 77
-        y: 82
-        width: 296
-        height: 40
         anchors.top: parent.top
         anchors.topMargin: 82
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-        placeholderTextColor: "#88373535"
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Login")
-        background: Rectangle {
-            border.color: "red"
-            border.width: 2
-        }
     }
 
-    TextField {
+    CustomTextField {
         id: passField
-        x: 77
-        y: 147
-        width: 296
-        height: 40
         anchors.top: loginField.bottom
         anchors.topMargin: 25
-        verticalAlignment: Text.AlignVCenter
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Hasło")
-        background: Rectangle {
-            border.color: "green"
-            border.width: 2
-        }
     }
 
     Text {

@@ -21,53 +21,28 @@ Item {
     property alias passField: passField
     property alias loginField: loginField
 
-    TextField {
+    CustomTextField {
         id: loginField
-        x: 77
-        y: 62
-        width: 296
         anchors.top: parent.top
         anchors.topMargin: 62
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Login")
-        background: Rectangle {
-            border.color: "red"
-            border.width: 2
-        }
     }
 
-    TextField {
+    CustomTextField {
         id: passField
-        x: 77
-        y: 127
-        width: 296
         anchors.top: loginField.bottom
         anchors.topMargin: 25
-        verticalAlignment: Text.AlignVCenter
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Hasło")
-        background: Rectangle {
-            border.color: "red"
-            border.width: 2
-        }
     }
 
-    TextField {
+    CustomTextField {
         id: pass2Field
-        x: 77
-        y: 177
-        width: 296
         anchors.top: passField.bottom
         anchors.topMargin: 10
-        verticalAlignment: Text.AlignVCenter
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Powtórz Hasło")
-        background: Rectangle {
-            border.color: "red"
-            border.width: 2
-        }
     }
 
     Text {
