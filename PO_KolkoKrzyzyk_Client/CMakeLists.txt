@@ -22,12 +22,17 @@ qt_standard_project_setup()
 
 ## Qt ADD EXE ##
 qt_add_executable("${PROJECT_NAME}"
+    "include/main.h"    
     "src/main.cpp"
-    "src/WindowControl.cpp"
-    "src/GameControl.cpp"
-    "include/main.h"
+    
+    "include/WindowViews.h"
+    "src/WindowViews.cpp"
+
     "include/WindowControl.h"
+    "src/WindowControl.cpp"
+
     "include/GameControl.h"
+    "src/GameControl.cpp"
 )
 
 ## Qt resources ##
