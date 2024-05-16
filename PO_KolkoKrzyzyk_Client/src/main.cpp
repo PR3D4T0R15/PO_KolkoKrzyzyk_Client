@@ -3,12 +3,16 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QIcon>
+#include <QResource>
 #include "include/WindowControl.h"
 #include "include/GameControl.h"
 
 
 int main(int argc, char* argv[])
 {
+	//load resource file
+	QResource::registerResource("ui/PO_KolkoKrzyzyk_GUI.rcc");
+
 	//default setup
 	QGuiApplication app(argc, argv);
 	QQmlApplicationEngine engine;
