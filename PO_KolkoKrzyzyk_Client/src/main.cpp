@@ -6,6 +6,7 @@
 #include <QResource>
 #include "include/WindowControl.h"
 #include "include/GameControl.h"
+#include "include/WindowViews.h"
 
 
 int main(int argc, char* argv[])
@@ -20,6 +21,10 @@ int main(int argc, char* argv[])
 	//classes for QML signals and slots
 	WindowControl* uiControl = new WindowControl(&app);
 	GameControl* gameControl = new GameControl(&app);
+	WindowViews* viewsControl = new WindowViews(&app);
+
+	//views signal exit to close app
+	QObject::connect(viewsControl, &WindowViews::inExit, &app, &QGuiApplication::quit);
 
 	//classes register in QML
 	engine.rootContext()->setContextProperty("uiControl", uiControl);
@@ -45,6 +50,7 @@ int main(int argc, char* argv[])
 	{
 		return -1;
 	}
+
 
 
 	return app.exec();

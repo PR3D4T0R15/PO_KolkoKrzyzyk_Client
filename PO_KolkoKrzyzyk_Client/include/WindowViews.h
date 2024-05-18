@@ -18,7 +18,7 @@ public slots:
 	// void callMe();
 	void goToStartView();
 	void goToLoginView();
-	void goToNewAccount();
+	void goToNewAccountView();
 	void goToHomeView();
 	void goToMatchmakingView();
 	void goToGameView();
