@@ -16,7 +16,8 @@ Item {
     height: 720
 
     anchors.fill: parent
-    property alias ranksItem: ranksItem
+    property alias rankingList: rankingList
+    property alias playerRanking: playerRanking
     property alias stackView: stackView
 
     GridLayout {

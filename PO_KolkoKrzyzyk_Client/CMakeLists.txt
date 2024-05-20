@@ -15,6 +15,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 ## Qt PACKAGES ##
 find_package(Qt6 REQUIRED COMPONENTS Gui)
 find_package(Qt6 REQUIRED COMPONENTS Qml)
+find_package(Qt6 REQUIRED COMPONENTS Quick)
 find_package(Qt6 REQUIRED COMPONENTS StateMachine)
 
 ## Qt project setup ##
@@ -41,6 +42,7 @@ add_dependencies("${PROJECT_NAME}" "PO_KolkoKrzyzyk_GUI")
 
 target_link_libraries("${PROJECT_NAME}" PRIVATE Qt6::Gui)
 target_link_libraries("${PROJECT_NAME}" PRIVATE Qt6::Qml)
+target_link_libraries("${PROJECT_NAME}" PRIVATE Qt6::Quick)
 target_link_libraries("${PROJECT_NAME}" PRIVATE Qt6::StateMachine)
 
 set_target_properties("${PROJECT_NAME}" PROPERTIES

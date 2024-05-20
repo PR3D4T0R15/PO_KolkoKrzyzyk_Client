@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QDebug>
+#include <QQuickItem>
 
 class WindowControl : public QObject
 {
@@ -13,26 +14,13 @@ public:
 
 public slots:
 	// void callMe();
-	//void settingsButton();
-	//void aboutButton();
-	//void volumeButton();
-
-	void enterGameButton();
-	//void logInButton();
-	//void newAccountButton();
-	//void logOutButton();
-	//void exitButton();
-	//void playButton();
-	//void exitQueueButton();
-	//void leaveMatchButton();
-	//void playAgainButton();
-	//void goToMenuButton();
-
+	// implement - do sth
+	void uiButtonClicked(QObject* obj);
 
 signals:
-	// void IWillCallSth()
-	//void goToStartWindow();
-	void goToLoginWindow();
+	// void IWillCallSlotToDoSth()
+	// not implement - emit signal
+	void uiChangeView();
 
 private:
 };

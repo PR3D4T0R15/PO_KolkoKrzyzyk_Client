@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 	QQmlApplicationEngine engine;
 
 	//classes for QML signals and slots
-	WindowControl* uiControl = new WindowControl(&app);
+	WindowControl* windowControl = new WindowControl(&app);
 	GameControl* gameControl = new GameControl(&app);
 	WindowViews* viewsControl = new WindowViews(&app);
 
@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 	QObject::connect(viewsControl, &WindowViews::inExit, &app, &QGuiApplication::quit);
 
 	//classes register in QML
-	engine.rootContext()->setContextProperty("uiControl", uiControl);
+	engine.rootContext()->setContextProperty("windowControl", windowControl);
 	engine.rootContext()->setContextProperty("gameControl", gameControl);
 
 	//default setup

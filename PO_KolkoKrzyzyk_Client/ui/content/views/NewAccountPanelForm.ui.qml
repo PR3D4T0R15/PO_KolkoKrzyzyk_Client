@@ -15,6 +15,7 @@ Item {
     width: 450
     height: 370
     anchors.fill: parent
+    property alias errorText: errorText
     property alias logInButton: logInButton
     property alias newAccountButton: newAccountButton
     property alias pass2Field: pass2Field

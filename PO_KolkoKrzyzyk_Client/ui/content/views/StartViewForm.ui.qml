@@ -16,7 +16,7 @@ Item {
     height: 720
     anchors.fill: parent
     property alias errorText: errorText
-    property alias bigButton: bigButton
+    property alias welcomeButton: welcomeButton
 
     GridLayout {
         id: mainLayout
@@ -59,7 +59,8 @@ Item {
                 }
 
                 BigButton {
-                    id: bigButton
+                    id: welcomeButton
+                    property string cppId: "welcomeButton"
                     hoverEnabled: false
                     implicitWidth: 240
                     implicitHeight: 110

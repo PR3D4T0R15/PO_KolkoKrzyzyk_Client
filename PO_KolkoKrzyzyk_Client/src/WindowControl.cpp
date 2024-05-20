@@ -8,9 +8,8 @@ WindowControl::~WindowControl()
 {
 }
 
-void WindowControl::enterGameButton()
+void WindowControl::uiButtonClicked(QObject* obj)
 {
-	qDebug() << "Big Button was clicked!";
-	emit goToLoginWindow();
+	QString test = obj->property("cppId").toString();
+	qDebug() << "Clicked " << test;
 }
-

@@ -15,6 +15,8 @@ Item {
     width: 1280
     height: 720
     anchors.fill: parent
+    property alias valueQueue: valueQueue
+    property alias exitMatchmakingButton: exitMatchmakingButton
 
     Rectangle {
         id: rectangle
@@ -70,7 +72,7 @@ Item {
     }
 
     AccountButton {
-        id: accountButton
+        id: exitMatchmakingButton
         text: "Wyjdź z gry"
         anchors.top: parent.top
         anchors.topMargin: 536

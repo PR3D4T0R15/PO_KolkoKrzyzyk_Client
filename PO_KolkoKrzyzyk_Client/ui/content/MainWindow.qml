@@ -28,6 +28,7 @@ Window {
 
         SoundControl {
             id: soundControl
+            property string cppId: "soundControl"
             implicitWidth: 39
             implicitHeight: 39
             Layout.fillHeight: false
@@ -35,26 +36,31 @@ Window {
             Layout.alignment: Qt.AlignBottom
             onClicked: {
                 sound.buttonClickSound.play()
+                windowControl.uiButtonClicked(soundControl);
             }
         }
 
         AboutButton {
             id: aboutButton
+            property string cppId: "aboutButton"
             Layout.fillHeight: false
             Layout.fillWidth: false
             Layout.alignment: Qt.AlignBottom
             onClicked: {
                 sound.buttonClickSound.play()
+                windowControl.uiButtonClicked(aboutButton);
             }
         }
 
         SettingsButton {
             id: settingsButton
+            property string cppId: "settingsButton"
             Layout.fillHeight: false
             Layout.fillWidth: false
             Layout.alignment: Qt.AlignBottom
             onClicked: {
                 sound.buttonClickSound.play()
+                windowControl.uiButtonClicked(settingsButton);
             }
         }
     }
@@ -102,10 +108,10 @@ Window {
 
     //CppQML integration
     Connections {
-        target: uiControl
+        target: windowControl
 
         function onGoToLoginWindow(){
-            stackView.push(loginView)
+            stackView.replace(loginView)
         }
     }
 }

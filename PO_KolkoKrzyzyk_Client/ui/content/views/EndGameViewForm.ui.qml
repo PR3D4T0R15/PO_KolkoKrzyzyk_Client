@@ -16,6 +16,10 @@ Item {
     height: 720
 
     anchors.fill: parent
+    property alias loader: loader
+    property alias goToMenuButton: goToMenuButton
+    property alias playAgainButton: playAgainButton
+    property alias rankingPlace: rankingPlace
 
     Rectangle {
         id: rectangle
@@ -36,14 +40,14 @@ Item {
         spacing: 50
 
         EndGameButton {
-            id: endGameButton1
+            id: playAgainButton
             width: 150
             height: 60
             text: "ZAGRAJ PONOWNIE"
         }
 
         EndGameButton {
-            id: endGameButton
+            id: goToMenuButton
             width: 150
             height: 60
             text: "WYJDŹ DO MEU"
@@ -76,10 +80,33 @@ Item {
         }
 
         Text {
-            id: text2
+            id: rankingPlace
             text: qsTr("5")
             font.pixelSize: 20
             font.bold: true
         }
     }
+    states: [
+        State {
+            name: "win"
+            PropertyChanges {
+                target: loader
+                source: "WinPanel.ui.qml"
+            }
+        },
+        State {
+            name: "lost"
+            PropertyChanges {
+                target: loader
+                source: "FailPanel.ui.qml"
+            }
+        },
+        State {
+            name: "draw"
+            PropertyChanges {
+                target: loader
+                source: "DrawPanel.ui.qml"
+            }
+        }
+    ]
 }

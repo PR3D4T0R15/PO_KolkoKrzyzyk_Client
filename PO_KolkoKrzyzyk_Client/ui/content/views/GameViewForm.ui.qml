@@ -17,7 +17,17 @@ Item {
     height: 720
 
     anchors.fill: parent
-    property alias timeValue: timeValue
+    property alias timeLeftValue: timeLeftValue
+    property alias gameInfoPopup: gameInfoPopup
+    property alias gameControlC3: gameControlC3
+    property alias gameControlB3: gameControlB3
+    property alias gameControlA3: gameControlA3
+    property alias gameControlC2: gameControlC2
+    property alias gameControlB2: gameControlB2
+    property alias gameControlA2: gameControlA2
+    property alias gameControlC1: gameControlC1
+    property alias gameControlB1: gameControlB1
+    property alias gameControlA1: gameControlA1
     property alias gameLeaveButton: gameLeaveButton
 
     GridLayout {
@@ -163,7 +173,7 @@ Item {
             }
 
             Text {
-                id: timeValue
+                id: timeLeftValue
                 color: "#92140c"
                 text: qsTr("15")
                 anchors.top: time.bottom

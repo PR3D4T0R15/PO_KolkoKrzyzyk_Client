@@ -15,6 +15,10 @@ Item {
     width: 450
     height: 370
 
+    property alias logOutButton: logOutButton
+    property alias exitButton: exitButton
+    property alias playButton: playButton
+
     PlayButton {
         id: playButton
         anchors.top: parent.top

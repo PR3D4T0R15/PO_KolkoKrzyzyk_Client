@@ -1,3 +1,6 @@
 import QtQuick
+import "../sounds"
 
-NewAccountPanelForm {}
+NewAccountPanelForm {
+	
+}

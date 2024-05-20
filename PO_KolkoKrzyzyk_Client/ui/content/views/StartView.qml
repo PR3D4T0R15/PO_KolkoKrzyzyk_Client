@@ -2,10 +2,10 @@ import QtQuick
 import "../sounds"
 
 StartViewForm {
-    bigButton {
+    welcomeButton {
         onClicked: {
             sound.buttonClickSound.play()
-            uiControl.enterGameButton();
+            windowControl.uiButtonClicked(welcomeButton);
         }
     }
 
