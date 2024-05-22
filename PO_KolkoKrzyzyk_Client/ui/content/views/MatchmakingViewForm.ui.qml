@@ -73,6 +73,7 @@ Item {
 
     AccountButton {
         id: exitMatchmakingButton
+        property string cppId: "exitMatchmakingButton"
         text: "Wyjdź z gry"
         anchors.top: parent.top
         anchors.topMargin: 536

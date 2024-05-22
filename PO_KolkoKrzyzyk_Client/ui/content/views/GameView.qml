@@ -1,3 +1,16 @@
 import QtQuick
+import "../sounds"
 
-GameViewForm {}
+GameViewForm {
+    gameLeaveButton {
+        onClicked: {
+            sound.buttonClickSound.play()
+            windowControl.uiButtonClicked(gameLeaveButton);
+        }
+    }
+
+    SoundsControls {
+        id: sound
+    }
+}
+

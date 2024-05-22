@@ -184,6 +184,7 @@ Item {
 
             GameLeaveButton {
                 id: gameLeaveButton
+                property string cppId: "gameLeaveButton"
                 text: qsTr("Zrezygnuj i wyjdź do MENU")
                 anchors.top: parent.top
                 anchors.topMargin: 342

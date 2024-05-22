@@ -21,6 +21,7 @@ Item {
 
     PlayButton {
         id: playButton
+        property string cppId: "playButton"
         anchors.top: parent.top
         anchors.topMargin: 85
         anchors.horizontalCenter: parent.horizontalCenter
@@ -35,11 +36,13 @@ Item {
 
         AccountButton {
             id: logOutButton
+            property string cppId: "logOutButton"
             text: qsTr("Wyloguj")
         }
 
         AccountButton {
             id: exitButton
+            property string cppId: "exitButton"
             text: qsTr("Wyjdź z gry")
         }
     }

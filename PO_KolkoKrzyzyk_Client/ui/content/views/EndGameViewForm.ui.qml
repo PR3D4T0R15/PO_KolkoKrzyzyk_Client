@@ -41,6 +41,7 @@ Item {
 
         EndGameButton {
             id: playAgainButton
+            property string cppId: "playAgainButton"
             width: 150
             height: 60
             text: "ZAGRAJ PONOWNIE"
@@ -48,9 +49,10 @@ Item {
 
         EndGameButton {
             id: goToMenuButton
+            property string cppId: "goToMenuButton"
             width: 150
             height: 60
-            text: "WYJDŹ DO MEU"
+            text: "WYJDŹ DO MENU"
         }
     }
 

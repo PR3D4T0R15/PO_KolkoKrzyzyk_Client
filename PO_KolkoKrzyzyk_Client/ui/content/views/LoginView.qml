@@ -1,5 +1,4 @@
 import QtQuick
 
-LoginViewForm {
 
-}
+LoginViewForm {}
