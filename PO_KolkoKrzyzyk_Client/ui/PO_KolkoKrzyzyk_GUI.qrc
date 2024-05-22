@@ -18,7 +18,6 @@
         <file>content/images/sound_on.svg</file>
         <file>content/images/x.png</file>
         <file>content/MainWindow.qml</file>
-        <file>content/SecondWindow.qml</file>
         <file>content/sounds/background1.wav</file>
         <file>content/sounds/background2.wav</file>
         <file>content/sounds/background3.wav</file>
@@ -68,5 +67,10 @@
         <file>content/views/WinPanel.ui.qml</file>
         <file>content/controls/CustomTextField.ui.qml</file>
         <file>content/scripts/ViewChanger.js</file>
+        <file>content/AboutWindow.qml</file>
+        <file>content/images/game_logo.png</file>
+        <file>content/images/gameinforectangle.svg</file>
+        <file>content/images/namegame.svg</file>
+        <file>content/images/pwr_logo.png</file>
     </qresource>
 </RCC>
