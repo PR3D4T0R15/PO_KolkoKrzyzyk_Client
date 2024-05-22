@@ -58,7 +58,16 @@ WindowViews::WindowViews(QObject *parent): QObject(parent)
 
 WindowViews::~WindowViews()
 {
-	delete _windowView;
+	_startView->deleteLater();
+	_loginView->deleteLater();
+	_newAccount->deleteLater();
+	_homeView->deleteLater();
+	_matchmakingView->deleteLater();
+	_gameView->deleteLater();
+	_endgameView->deleteLater();
+	_exit->deleteLater();
+
+	_windowView->deleteLater();
 }
 
 void WindowViews::goToLoginView()

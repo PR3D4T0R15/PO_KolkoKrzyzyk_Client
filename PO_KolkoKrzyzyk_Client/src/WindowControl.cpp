@@ -10,6 +10,12 @@ WindowControl::~WindowControl()
 
 void WindowControl::uiButtonClicked(QObject* obj)
 {
-	QString test = obj->property("cppId").toString();
-	qDebug() << "Clicked " << test;
+	QString cppId = obj->property("cppId").toString();
+
+	if (cppId == "welcomeButton")
+	{
+		emit uiChangeView(2);
+	}
+	
 }
+

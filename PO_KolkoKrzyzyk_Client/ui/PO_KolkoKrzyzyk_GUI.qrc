@@ -67,5 +67,6 @@
         <file>content/views/FailPanel.ui.qml</file>
         <file>content/views/WinPanel.ui.qml</file>
         <file>content/controls/CustomTextField.ui.qml</file>
+        <file>content/scripts/ViewChanger.js</file>
     </qresource>
 </RCC>

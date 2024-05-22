@@ -1,9 +1,10 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import "controls"
 import "views"
 import "sounds"
-import QtQuick.Layouts
+import "scripts/ViewChanger.js" as ViewSettings
 
 Window {
     id: mainWindow
@@ -77,30 +78,8 @@ Window {
         anchors.topMargin: 20
         anchors.bottomMargin: 20
 
-        initialItem: startView
+        initialItem: "views/StartView.qml"
     }
-    //stackedView views
-    StartView {
-        id: startView
-        visible: false
-    }
-    LoginView {
-        id: loginView
-        visible: false
-    }
-    MatchmakingView {
-        id: matchmakingView
-        visible: false
-    }
-    GameView {
-        id: gameView
-        visible: false
-    }
-    EndGameView {
-        id: endGameView
-        visible: false
-    }
-
     //sound manager
     SoundsControls {
         id: sound
@@ -110,8 +89,8 @@ Window {
     Connections {
         target: windowControl
 
-        function onGoToLoginWindow(){
-            stackView.replace(loginView)
+        function onUiChangeView(page) {
+            stackView.replace(ViewSettings.changeView(page))
         }
     }
 }

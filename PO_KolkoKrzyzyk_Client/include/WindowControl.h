@@ -20,7 +20,7 @@ public slots:
 signals:
 	// void IWillCallSlotToDoSth()
 	// not implement - emit signal
-	void uiChangeView();
+	void uiChangeView(int page);
 
 private:
 };
