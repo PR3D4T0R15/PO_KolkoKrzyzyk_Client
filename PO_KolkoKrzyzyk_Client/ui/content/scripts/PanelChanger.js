@@ -12,6 +12,10 @@ function changePanel(panel) {
             fileNameString = "NewAccountPanel";
             break;
 
+        case 3:
+            fileNameString = "PlayPanel";
+            break;
+
         default:
             fileNameString = "LoginPanel";
             break;

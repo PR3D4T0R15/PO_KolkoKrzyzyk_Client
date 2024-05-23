@@ -13,7 +13,17 @@ function changeView(page) {
             fileNameString = "LoginView";
             break;
 
-        
+        case 3:
+            fileNameString = "MatchmakingView";
+            break;
+
+        case 4:
+            fileNameString = "GameView";
+            break;
+
+        case 5:
+            fileNameString = "EndGameView";
+            break;
 
         default:
             fileNameString = "StartView";

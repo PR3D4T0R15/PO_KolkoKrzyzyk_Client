@@ -25,7 +25,7 @@ function validatePass(pass1) {
 
 function checkIfEqual(pass1, pass2) {
     if (pass1 != pass2) {
-        return { valid: false, message: "Hasła są róźne." };
+        return { valid: false, message: "Hasła są różne." };
     }
 
     return { valid: true, message: "" };
