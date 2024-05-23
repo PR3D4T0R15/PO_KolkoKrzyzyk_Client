@@ -51,6 +51,17 @@ Item {
                 anchors.fill: parent
 
                 initialItem: "LoginPanel.qml"
+
+
+                replaceEnter: Transition{
+                    PropertyAnimation{
+                        properties: "x"
+                        from: -stackView.width
+                        to: 0
+                        duration: 500
+                    }
+                }
+
             }
         }
 
