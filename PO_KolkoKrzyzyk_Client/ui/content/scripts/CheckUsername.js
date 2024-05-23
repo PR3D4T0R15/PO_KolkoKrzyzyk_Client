@@ -4,5 +4,6 @@ function validateUsername(username) {
     if (regex.test(username)) {
         return { valid: true, message: "" };
     }
-    return { valid: false, message: "Nazwa uøytkownika jest niepoprawna." };
+
+    return { valid: false, message: "Nazwa u≈ºytkownika zawiera niedozwolone znaki." };
 }

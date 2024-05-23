@@ -30,4 +30,5 @@ void WindowControl::uiButtonClicked(QObject* obj)
 	{
 		emit uiChangePanel(1);
 	}
+	//TODO loginButton
 }

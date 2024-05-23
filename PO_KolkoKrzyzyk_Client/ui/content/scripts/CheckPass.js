@@ -1,28 +1,32 @@
-function validatePass(pass1, pass2) {
+function validatePass(pass1) {
 
-    if (pass1 != pass2) {
-        return { valid: false, message: "Has³a s¹ róŸne." };
-    }
-
-    // Sprawdzenie d³ugoœci hasla
-    if (password.length < 8) {
-        return { valid: false, message: "Has³o musi mieæ minimum 8 znaków." };
+    // Sprawdzenie dÅ‚ugoÅ›ci hasla
+    if (pass1.length < 8) {
+        return { valid: false, message: "HasÅ‚o musi mieÄ‡ minimum 8 znakÃ³w." };
     }
 
     // Sprawdzenie obecnosci wielkiej litery
-    if (!/[A-Z]/.test(password)) {
-        return { valid: false, message: "Has³o musi zawieraæ wielk¹ literê." };
+    if (!/[A-Z]/.test(pass1)) {
+        return { valid: false, message: "HasÅ‚o musi zawieraÄ‡ wielkÄ… literÄ™." };
     }
 
     // Sprawdzenie obecnosci cyfry
-    if (!/[0-9]/.test(password)) {
-        return { valid: false, message: "Has³o musi zawieraæ cyfrê." };
+    if (!/[0-9]/.test(pass1)) {
+        return { valid: false, message: "HasÅ‚o musi zawieraÄ‡ cyfrÄ™." };
     }
 
     // Sprawdzenie obecnosci znaku specjalnego
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-        return { valid: false, message: "Has³o musi zawieraæ znak specjalny." };
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pass1)) {
+        return { valid: false, message: "HasÅ‚o musi zawieraÄ‡ znak specjalny." };
     }
 
-    return { valid: true, message: "Has³o jest poprawne." };
+    return { valid: true, message: "HasÅ‚o jest poprawne." };
+}
+
+function checkIfEqual(pass1, pass2) {
+    if (pass1 != pass2) {
+        return { valid: false, message: "HasÅ‚a sÄ… rÃ³Åºne." };
+    }
+
+    return { valid: true, message: "" };
 }
