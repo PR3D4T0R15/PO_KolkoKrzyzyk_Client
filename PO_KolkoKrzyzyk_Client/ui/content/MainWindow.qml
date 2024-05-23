@@ -89,8 +89,12 @@ Window {
     Connections {
         target: windowControl
 
-        function onUiChangeView(panel) {
-            stackView.replace(ViewSettings.changeView(panel))
+        function onUiChangeView(view) {
+            stackView.replace(ViewSettings.changeView(panel));
+        }
+        function onUiChangeState(state) {
+            var view = stackView.currentItem;
+            view.loader.source = ViewSettings.changeState(state);
         }
     }
 }

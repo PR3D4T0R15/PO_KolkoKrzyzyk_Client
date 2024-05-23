@@ -30,8 +30,6 @@
         <file>content/views/GameViewForm.ui.qml</file>
         <file>content/views/LoginPanel.qml</file>
         <file>content/views/LoginPanelForm.ui.qml</file>
-        <file>content/views/LoginView.qml</file>
-        <file>content/views/LoginViewForm.ui.qml</file>
         <file>content/views/MatchmakingView.qml</file>
         <file>content/views/MatchmakingViewForm.ui.qml</file>
         <file>content/views/NewAccountPanel.qml</file>
@@ -74,6 +72,7 @@
         <file>content/images/pwr_logo.png</file>
         <file>content/scripts/CheckUsername.js</file>
         <file>content/scripts/CheckPass.js</file>
-        <file>content/scripts/PanelChanger.js</file>
+        <file>content/views/HomeView.qml</file>
+        <file>content/views/HomeViewForm.ui.qml</file>
     </qresource>
 </RCC>

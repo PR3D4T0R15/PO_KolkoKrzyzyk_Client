@@ -13,15 +13,11 @@ public:
 	~WindowControl();
 
 public slots:
-	// void callMe();
-	// implement - do sth
 	void uiButtonClicked(QObject* obj);
 
 signals:
-	// void IWillCallSlotToDoSth()
-	// not implement - emit signal
-	void uiChangeView(int page);
-	void uiChangePanel(int panel);
+	void uiChangeView(QString view);
+	void uiChangeState(QString state);
 
 private:
 };

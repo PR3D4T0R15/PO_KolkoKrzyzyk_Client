@@ -1,34 +1,13 @@
-function changeView(page) {
+function changeView(view) {
 
     var urlString = "views/";
     var extensionString = ".qml";
-    var fileNameString = "";
 
-    switch (page) {
-        case 1:
-            fileNameString = "StartView";
-            break;
+    return urlString + view + extensionString;
+}
 
-        case 2:
-            fileNameString = "LoginView";
-            break;
+function changeState(state) {
+    var extensionString = ".qml";
 
-        case 3:
-            fileNameString = "MatchmakingView";
-            break;
-
-        case 4:
-            fileNameString = "GameView";
-            break;
-
-        case 5:
-            fileNameString = "EndGameView";
-            break;
-
-        default:
-            fileNameString = "StartView";
-            break;
-    }
-
-    return urlString + fileNameString + extensionString;
+    return state + extensionString;
 }
