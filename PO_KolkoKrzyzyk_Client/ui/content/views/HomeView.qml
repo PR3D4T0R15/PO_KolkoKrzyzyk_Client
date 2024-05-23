@@ -1,7 +1,7 @@
 import QtQuick
 import "../scripts/PanelChanger.js" as ViewSettings
 
-LoginViewForm {
+HomeViewForm {
 	Connections {
         target: windowControl
 

@@ -12,13 +12,15 @@ import QtQuick.Layouts
 import "../controls"
 
 Item {
+    id: item1
     width: 1280
     height: 720
 
     anchors.fill: parent
+    state: "loginAccount"
     property alias rankingList: rankingList
     property alias playerRanking: playerRanking
-    property alias stackView: stackView
+    property alias loader: loader
 
     GridLayout {
         id: mainLayout
@@ -46,22 +48,9 @@ Item {
                 anchors.fill: parent
             }
 
-            StackView {
-                id: stackView
+            Loader {
+                id: loader
                 anchors.fill: parent
-
-                initialItem: "LoginPanel.qml"
-
-
-                replaceEnter: Transition{
-                    PropertyAnimation{
-                        properties: "x"
-                        from: -stackView.width
-                        to: 0
-                        duration: 500
-                    }
-                }
-
             }
         }
 
@@ -340,4 +329,27 @@ Item {
         columns: 2
         columnSpacing: 0
     }
+    states: [
+        State {
+            name: "loginAccount"
+            PropertyChanges {
+                target: loader
+                source: "LoginPanel.qml"
+            }
+        },
+        State {
+            name: "newAccount"
+            PropertyChanges {
+                target: loader
+                source: "NewAccountPanel.qml"
+            }
+        },
+        State {
+            name: "home"
+            PropertyChanges {
+                target: loader
+                source: "PlayPanel.qml"
+            }
+        }
+    ]
 }
