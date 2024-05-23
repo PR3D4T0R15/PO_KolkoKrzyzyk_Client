@@ -36,6 +36,7 @@ Item {
         anchors.topMargin: 25
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Hasło")
+        echoMode: TextInput.Password
     }
 
     CustomTextField {
@@ -44,6 +45,7 @@ Item {
         anchors.topMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Powtórz Hasło")
+        echoMode: TextInput.Password
     }
 
     Text {

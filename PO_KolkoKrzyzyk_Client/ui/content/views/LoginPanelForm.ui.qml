@@ -33,6 +33,7 @@ Item {
         anchors.topMargin: 25
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Hasło")
+        echoMode: TextInput.Password
     }
 
     Text {

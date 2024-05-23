@@ -16,7 +16,7 @@ function validatePass(pass1) {
     }
 
     // Sprawdzenie obecnosci znaku specjalnego
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pass1)) {
+    if (!/[!@#$%^&*(),.?":{}|<>_-]/.test(pass1)) {
         return { valid: false, message: "Hasło musi zawierać znak specjalny." };
     }
 

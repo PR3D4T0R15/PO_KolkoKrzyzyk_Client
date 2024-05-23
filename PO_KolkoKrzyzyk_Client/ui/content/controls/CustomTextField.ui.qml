@@ -18,6 +18,7 @@ TextField {
     placeholderTextColor: "#88373535"
     anchors.horizontalCenter: parent.horizontalCenter
     placeholderText: qsTr("Login")
+    font.pointSize: 12
     background: borderRectangle
     state: "default"
     states: [
