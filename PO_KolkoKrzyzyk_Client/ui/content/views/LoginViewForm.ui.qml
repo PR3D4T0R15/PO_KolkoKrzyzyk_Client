@@ -37,6 +37,7 @@ Item {
             implicitWidth: 450
             implicitHeight: 370
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            clip: true
 
             Rectangle {
                 id: loginBackground
