@@ -70,13 +70,13 @@ Item {
 
         AccountButton {
             id: newAccountButton
-            property string cppId: "newAccountButton"
+            property string cppId: "createNewAccountButton"
             text: qsTr("Załóż konto")
         }
 
         AccountButton {
             id: logInButton
-            property string cppId: "logInButton"
+            property string cppId: "goToLoginButton"
             text: "Cofnij"
         }
     }

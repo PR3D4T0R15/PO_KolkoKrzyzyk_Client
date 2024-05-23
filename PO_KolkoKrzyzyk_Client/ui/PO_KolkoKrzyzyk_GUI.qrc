@@ -72,5 +72,8 @@
         <file>content/images/gameinforectangle.svg</file>
         <file>content/images/namegame.svg</file>
         <file>content/images/pwr_logo.png</file>
+        <file>content/scripts/CheckUsername.js</file>
+        <file>content/scripts/CheckPass.js</file>
+        <file>content/scripts/PanelChanger.js</file>
     </qresource>
 </RCC>

@@ -89,8 +89,8 @@ Window {
     Connections {
         target: windowControl
 
-        function onUiChangeView(page) {
-            stackView.replace(ViewSettings.changeView(page))
+        function onUiChangeView(panel) {
+            stackView.replace(ViewSettings.changeView(panel))
         }
     }
 }

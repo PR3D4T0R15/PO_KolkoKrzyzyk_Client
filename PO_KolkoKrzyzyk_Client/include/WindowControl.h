@@ -21,6 +21,7 @@ signals:
 	// void IWillCallSlotToDoSth()
 	// not implement - emit signal
 	void uiChangeView(int page);
+	void uiChangePanel(int panel);
 
 private:
 };

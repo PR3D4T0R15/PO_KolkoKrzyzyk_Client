@@ -49,7 +49,7 @@ Item {
                 id: stackView
                 anchors.fill: parent
 
-                initialItem: loginPanel
+                initialItem: "LoginPanel.qml"
             }
         }
 
@@ -327,13 +327,5 @@ Item {
         }
         columns: 2
         columnSpacing: 0
-    }
-    LoginPanel {
-        id: loginPanel
-        visible: false
-    }
-    NewAccountPanel {
-        id: newAccountPanel
-        visible: false
     }
 }
