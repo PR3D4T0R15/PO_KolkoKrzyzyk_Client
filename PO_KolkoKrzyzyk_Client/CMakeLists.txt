@@ -25,9 +25,6 @@ qt_standard_project_setup()
 qt_add_executable("${PROJECT_NAME}"
     "include/main.h"    
     "src/main.cpp"
-    
-    "include/WindowViews.h"
-    "src/WindowViews.cpp"
 
     "include/WindowControl.h"
     "src/WindowControl.cpp"

@@ -8,42 +8,30 @@
 class WindowControl : public QObject
 {
 	Q_OBJECT
+	Q_PROPERTY(QString errInfo READ getErrInfo WRITE setErrInfo NOTIFY errInfoChanged)
 
 public:
 	WindowControl(QObject* parent = nullptr);
 	~WindowControl();
 
+	//Q_PROPERTY
+	void setErrInfo(const QString& newErrInfo);
+	QString getErrInfo();
+
 public slots:
 	//QML
-	void uiButtonClicked(QObject* obj);
+	void uiButtonClicked(QObject* obj);		//message from QML
 
-	//C++
-	void goToStartView();
-	void goToLoginView();
-	void goToNewAccountView();
-	void goToHomeView();
-	void goToMatchmakingView();
-	void goToGameView();
-	void goToEndgameView();
+	
 
 signals:
 	//QML
-	void uiChangeView(QString view);
-	void uiChangeState(QString state);
+	void uiChangeView(QString view);		//message to QML
+	void uiChangeState(QString state);		//message to QML
 
-	//C++
-	void welcomeButtonClicked();
-	void newAccountButtonClicked();
-	void logInButtonClicked();
-	void createNewAccountButtonClicked();
-	void goToLoginButtonClicked();
-	void playButtonClicked();
-	void logOutButtonClicked();
-	void exitButtonClicked();
-	void exitMatchmakingButtonClicked();
-	void gameLeaveButtonClicked();
-	void playAgainButtonClicked();
-	void goToMenuButtonClicked();
+	//Q_PROPERTY
+	void errInfoChanged();
 
 private:
+	QString _errInfo;
 };

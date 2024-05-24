@@ -4,7 +4,7 @@
 #include <QStateMachine>
 #include <QState>
 #include <QFinalState>
-#include <QList>
+#include <QStringList>
 
 class WindowViews : public QObject
 {
@@ -15,8 +15,20 @@ public:
 	~WindowViews();
 
 public slots:
-	// void callMe();
+
+	void buttonClicked(QString buttonId);
+	void connectionStatus(bool status);
+	
+private slots:
+	void stateChanged();
+
+signals:
+	void changeUiView(QString view);
+	void changeUiState(QString state);
+
 	void goToStartView();
+	void connectionReady();
+	void connectionNotReady();
 	void goToLoginView();
 	void goToNewAccountView();
 	void goToHomeView();
@@ -24,9 +36,9 @@ public slots:
 	void goToGameView();
 	void goToEndgameView();
 	void goToExit();
-signals:
-	// void IWillCallSth()
+
 	void inStartView();
+	void connectionCheck();
 	void inLoginView();
 	void inNewAccount();
 	void inHomeView();
@@ -39,6 +51,7 @@ signals:
 private:
 	QStateMachine* _windowView;
 	QState* _startView;
+	QState* _connectToServer;
 	QState* _loginView;
 	QState* _newAccount;
 	QState* _homeView;
@@ -46,4 +59,5 @@ private:
 	QState* _gameView;
 	QState* _endgameView;
 	QFinalState* _exit;
+	QStringList _buttons;
 };

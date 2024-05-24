@@ -20,15 +20,9 @@ int main(int argc, char* argv[])
 
 	//classes for QML signals and slots
 	WindowControl* windowControl = new WindowControl(&app);
-	GameControl* gameControl = new GameControl(&app);
-	WindowViews* viewsControl = new WindowViews(&app);
-
-	//views signal exit to close app
-	QObject::connect(viewsControl, &WindowViews::inExit, &app, &QGuiApplication::quit);
 
 	//classes register in QML
 	engine.rootContext()->setContextProperty("windowControl", windowControl);
-	engine.rootContext()->setContextProperty("gameControl", gameControl);
 
 	//default setup
 	QGuiApplication::setWindowIcon(QIcon(":/content/images/ico256x256.png"));

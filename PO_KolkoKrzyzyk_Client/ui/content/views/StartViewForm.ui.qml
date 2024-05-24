@@ -70,7 +70,7 @@ Item {
                 Text {
                     id: errorText
                     color: "#920014"
-                    text: qsTr("Brak połączenia z serwerem")
+                    text: windowControl.errInfo
                     font.pixelSize: 14
                     font.bold: true
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
