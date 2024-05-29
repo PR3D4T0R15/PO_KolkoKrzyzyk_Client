@@ -10,7 +10,8 @@ import QtQuick
 import "../controls"
 
 Item {
-    id: endGame
+    id: endGameView
+    property string cppId: "endGameView"
 
     width: 1280
     height: 720

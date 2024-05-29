@@ -5,14 +5,14 @@ EndGameViewForm {
     goToMenuButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(goToMenuButton);
+            windowControl.goToMenuButtonClicked();
         }
     }
 
     playAgainButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(playAgainButton);
+            windowControl.playAgainButtonClicked();
         }
     }
 

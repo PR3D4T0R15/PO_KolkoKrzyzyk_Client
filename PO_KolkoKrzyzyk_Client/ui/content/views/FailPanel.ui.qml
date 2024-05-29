@@ -10,6 +10,7 @@ import QtQuick
 
 Item {
     id: failPanel
+    property string cppId: "failPanel"
     width: 480
     height: 400
 

@@ -5,14 +5,14 @@ LoginPanelForm {
     logInButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(logInButton);
+            windowControl.logInButtonClicked();
         }
     }
 
     newAccountButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(newAccountButton);
+            windowControl.newAccountButtonClicked();
         }
     }
 

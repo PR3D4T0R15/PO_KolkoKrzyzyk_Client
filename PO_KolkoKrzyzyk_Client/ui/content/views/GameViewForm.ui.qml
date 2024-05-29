@@ -13,6 +13,7 @@ import "../popups"
 
 Item {
     id: gameView
+    property string cppId: "gameView"
     width: 1280
     height: 720
 

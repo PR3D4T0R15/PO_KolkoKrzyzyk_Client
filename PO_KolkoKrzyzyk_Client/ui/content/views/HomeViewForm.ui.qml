@@ -12,7 +12,8 @@ import QtQuick.Layouts
 import "../controls"
 
 Item {
-    id: item1
+    id: homeView
+    property string cppId: "homeView"
     width: 1280
     height: 720
 

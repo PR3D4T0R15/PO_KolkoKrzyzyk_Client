@@ -12,6 +12,7 @@ import "../controls"
 
 Item {
     id: loginPanel
+    property string cppId: "loginPanel"
     width: 450
     height: 370
     property alias logInButton: logInButton

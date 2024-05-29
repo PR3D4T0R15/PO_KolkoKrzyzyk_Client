@@ -12,6 +12,7 @@ import "../controls"
 
 Item {
     id: startView
+    property string cppId: "startView"
     width: 1280
     height: 720
     anchors.fill: parent

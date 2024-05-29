@@ -10,6 +10,7 @@ import QtQuick
 
 Item {
     id: drawPanel
+    property string cppId: "drawPanel"
     width: 480
     height: 400
 

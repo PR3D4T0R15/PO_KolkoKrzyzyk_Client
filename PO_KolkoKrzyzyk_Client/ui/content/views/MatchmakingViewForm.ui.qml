@@ -12,6 +12,7 @@ import "../controls"
 
 Item {
     id: matchmakingView
+    property string cppId: "matchmakingView"
     width: 1280
     height: 720
     anchors.fill: parent

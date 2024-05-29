@@ -57,14 +57,12 @@
         <file>content/images/table_image.png</file>
         <file>content/images/win.png</file>
         <file>content/popups/GameInfoPopup.qml</file>
-        <file>content/scripts/test.js</file>
         <file>content/views/DrawPanel.ui.qml</file>
         <file>content/views/EndGameView.qml</file>
         <file>content/views/EndGameViewForm.ui.qml</file>
         <file>content/views/FailPanel.ui.qml</file>
         <file>content/views/WinPanel.ui.qml</file>
         <file>content/controls/CustomTextField.ui.qml</file>
-        <file>content/scripts/ViewChanger.js</file>
         <file>content/AboutWindow.qml</file>
         <file>content/images/game_logo.png</file>
         <file>content/images/gameinforectangle.svg</file>

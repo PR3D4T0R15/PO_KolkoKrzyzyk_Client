@@ -9,6 +9,7 @@ import QtQuick.Effects
 
 Window {
     id: aboutWindow
+    property string cppId: "aboutWindow"
     width: 700
     height: 700
     maximumWidth: 700

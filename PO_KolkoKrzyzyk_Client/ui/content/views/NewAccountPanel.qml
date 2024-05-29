@@ -7,14 +7,14 @@ NewAccountPanelForm{
     logInButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(logInButton);
+            windowControl.goToLoginButtonClicked();
         }
     }
 
     newAccountButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(newAccountButton);
+            windowControl.createNewAccountButtonClicked();
         }
     }
 

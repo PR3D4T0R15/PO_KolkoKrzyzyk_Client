@@ -5,7 +5,7 @@ GameViewForm {
     gameLeaveButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(gameLeaveButton);
+            windowControl.gameLeaveButtonClicked();
         }
     }
 

@@ -12,6 +12,7 @@ import "../controls"
 
 Item {
     id: newAccountPanel
+    property string cppId: "newAccountPanel"
     width: 450
     height: 370
     anchors.fill: parent

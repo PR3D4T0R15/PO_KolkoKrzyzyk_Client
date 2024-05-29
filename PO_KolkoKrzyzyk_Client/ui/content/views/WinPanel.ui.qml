@@ -10,6 +10,7 @@ import QtQuick
 
 Item {
     id: winPanel
+    property string cppId: "winPanel"
     width: 480
     height: 400
 

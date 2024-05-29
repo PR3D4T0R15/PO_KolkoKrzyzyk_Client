@@ -4,20 +4,20 @@ import "../sounds"
 PlayPanelForm {
     playButton {
         onClicked: {
-            sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(playButton)
+            sound.buttonClickSound.play();
+            windowControl.playButtonClicked();
         }
     }
     logOutButton {
         onClicked: {
-            sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(logOutButton)
+            sound.buttonClickSound.play();
+            windowControl.logOutButtonClicked();
         }
     }
     exitButton {
         onClicked: {
-            sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(exitButton)
+            sound.buttonClickSound.play();
+            windowControl.exitButtonClicked();
         }
     }
 

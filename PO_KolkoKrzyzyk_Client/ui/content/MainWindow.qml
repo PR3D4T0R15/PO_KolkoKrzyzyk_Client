@@ -4,97 +4,120 @@ import QtQuick.Layouts
 import "controls"
 import "views"
 import "sounds"
-import "scripts/ViewChanger.js" as ViewSettings
 
 Window {
-    id: mainWindow
-    width: 1280
-    height: 720
-    minimumWidth: 720
-    minimumHeight: 480
-    //visibility: Window.Maximized
-    visible: true
+	id: mainWindow
 
-    color: "#ffcf99"
+	property string cppId: "mainWindow"
 
-    ColumnLayout {
-        id: buttonBar
+	color: "#ffcf99"
+	height: 720
+	minimumHeight: 480
+	minimumWidth: 720
+	//visibility: Window.Maximized
+	visible: true
+	width: 1280
 
-        anchors.left: parent.left
-        //anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        layoutDirection: Qt.RightToLeft
-        spacing: 0
-        width: 39
+	ColumnLayout {
+		id: buttonBar
 
-        SoundControl {
-            id: soundControl
-            property string cppId: "soundControl"
-            implicitWidth: 39
-            implicitHeight: 39
-            Layout.fillHeight: false
-            Layout.fillWidth: false
-            Layout.alignment: Qt.AlignBottom
-            onClicked: {
-                sound.buttonClickSound.play()
-                windowControl.uiButtonClicked(soundControl);
-            }
-        }
+		//anchors.top: parent.top
+		anchors.bottom: parent.bottom
+		anchors.left: parent.left
+		layoutDirection: Qt.RightToLeft
+		spacing: 0
+		width: 39
 
-        AboutButton {
-            id: aboutButton
-            property string cppId: "aboutButton"
-            Layout.fillHeight: false
-            Layout.fillWidth: false
-            Layout.alignment: Qt.AlignBottom
-            onClicked: {
-                sound.buttonClickSound.play()
-                windowControl.uiButtonClicked(aboutButton);
-            }
-        }
+		SoundControl {
+			id: soundControl
 
-        SettingsButton {
-            id: settingsButton
-            property string cppId: "settingsButton"
-            Layout.fillHeight: false
-            Layout.fillWidth: false
-            Layout.alignment: Qt.AlignBottom
-            onClicked: {
-                sound.buttonClickSound.play()
-                windowControl.uiButtonClicked(settingsButton);
-            }
-        }
-    }
+			property string cppId: "soundControlButton"
 
-    StackView {
-        id: stackView
+			Layout.alignment: Qt.AlignBottom
+			Layout.fillHeight: false
+			Layout.fillWidth: false
+			implicitHeight: 39
+			implicitWidth: 39
 
-        anchors.left: buttonBar.right
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.leftMargin: 20
-        anchors.rightMargin: 20
-        anchors.topMargin: 20
-        anchors.bottomMargin: 20
+			onClicked: {
+				sound.buttonClickSound.play();
+				windowControl.soundButtonClicked();
+			}
+		}
+		AboutButton {
+			id: aboutButton
 
-        initialItem: "views/StartView.qml"
-    }
-    //sound manager
-    SoundsControls {
-        id: sound
-    }
+			property string cppId: "aboutButton"
 
-    //CppQML integration
-    Connections {
-        target: windowControl
+			Layout.alignment: Qt.AlignBottom
+			Layout.fillHeight: false
+			Layout.fillWidth: false
 
-        function onUiChangeView(view) {
-            stackView.replace(ViewSettings.changeView(panel));
-        }
-        function onUiChangeState(state) {
-            var view = stackView.currentItem;
-            view.loader.source = ViewSettings.changeState(state);
-        }
-    }
+			onClicked: {
+				sound.buttonClickSound.play();
+				windowControl.aboutButtonClicked();
+			}
+		}
+		SettingsButton {
+			id: settingsButton
+
+			property string cppId: "settingsButton"
+
+			Layout.alignment: Qt.AlignBottom
+			Layout.fillHeight: false
+			Layout.fillWidth: false
+
+			onClicked: {
+				sound.buttonClickSound.play();
+				windowControl.settingsButtonClicked();
+			}
+		}
+	}
+	StackView {
+		id: stackView
+
+		anchors.bottom: parent.bottom
+		anchors.bottomMargin: 20
+		anchors.left: buttonBar.right
+		anchors.leftMargin: 20
+		anchors.right: parent.right
+		anchors.rightMargin: 20
+		anchors.top: parent.top
+		anchors.topMargin: 20
+		initialItem: ""
+	}
+	//sound manager
+	SoundsControls {
+		id: sound
+
+	}
+
+	//CppQML integration
+	Connections {
+		function onInLoginView() {
+			var view = stackView.currentItem;
+			if (view.cppId == "homeView") {
+				view.state = "loginAccount";
+			} else {
+				stackView.replace("views/HomeView.qml");
+				var view = stackView.currentItem;
+				view.state = "loginAccount";
+			}
+		}
+		function onInNewAccountView() {
+			var view = stackView.currentItem;
+			if (view.cppId == "homeView") {
+				view.state = "newAccount";
+			} else {
+				stackView.replace("views/HomeView.qml");
+				var view = stackView.currentItem;
+				view.state = "newAccount";
+			}
+		}
+		function onInStartView() {
+			stackView.replace("views/StartView.qml");
+		}
+
+		target: windowControl
+	}
 }

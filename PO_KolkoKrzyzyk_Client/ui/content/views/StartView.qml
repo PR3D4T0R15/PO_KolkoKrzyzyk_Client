@@ -5,7 +5,7 @@ StartViewForm {
     welcomeButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.uiButtonClicked(welcomeButton);
+            windowControl.welcomeButtonClicked();
         }
     }
 

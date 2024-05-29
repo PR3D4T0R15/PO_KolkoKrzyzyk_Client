@@ -12,9 +12,11 @@ import "../controls"
 
 Item {
     id: playPanel
+    property string cppId: "playPanel"
     width: 450
     height: 370
 
+    
     property alias logOutButton: logOutButton
     property alias exitButton: exitButton
     property alias playButton: playButton
