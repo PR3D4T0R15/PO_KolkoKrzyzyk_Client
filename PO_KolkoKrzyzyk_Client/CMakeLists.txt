@@ -29,6 +29,9 @@ qt_add_executable("${PROJECT_NAME}"
     "include/WindowControl.h"
     "src/WindowControl.cpp"
 
+    "include/TcpClient.h"
+    "src/TcpClient.cpp"
+
     "include/GameControl.h"
     "src/GameControl.cpp"
 )
