@@ -9,7 +9,6 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 import QtQuick
 import QtQuick.Layouts
 import "../controls"
-import "../popups"
 
 Item {
     id: gameView
@@ -235,11 +234,6 @@ Item {
 
         columns: 2
         columnSpacing: 0
-    }
-
-    GameInfoPopup {
-        id: gameInfoPopup
-        visible: false
     }
     states: [
         State {

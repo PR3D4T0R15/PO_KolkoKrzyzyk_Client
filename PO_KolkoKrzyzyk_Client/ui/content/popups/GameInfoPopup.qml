@@ -6,7 +6,7 @@ Popup {
     width: 400
     height: 40
     x: (parent.width - width) / 2
-    y: 0
+    y: 20
     modal: false
     visible: true
     focus: true
@@ -33,15 +33,22 @@ Popup {
         font.pixelSize: 20
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        font.bold: true
+        textFormat: Text.RichText
     }
 
     Timer {
         id: closeTimer
-        interval: 5000
+        interval: 4000
         repeat: false
         running: false
 
         onTriggered: gameInfoPopup.close()
+    }
+
+    enter: Transition {
+        NumberAnimation { property: "y"; from: -50; to: 20; duration: 300 }
+    }
+    exit: Transition {
+        NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200 }
     }
 }

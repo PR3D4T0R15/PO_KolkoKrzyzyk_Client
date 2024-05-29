@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import "controls"
 import "views"
 import "sounds"
+import "popups"
 
 Window {
 	id: mainWindow
@@ -86,6 +87,11 @@ Window {
 		anchors.topMargin: 20
 		initialItem: ""
 	}
+	GameInfoPopup {
+        id: gameInfoPopup
+        visible: false
+    }
+	
 	//sound manager
 	SoundsControls {
 		id: sound
@@ -94,6 +100,11 @@ Window {
 
 	//CppQML integration
 	Connections {
+		function onPopupMessageChanged() {
+			gameInfoPopup.textMessage = windowControl.popupMessage;
+			gameInfoPopup.open();
+		}
+
 		function onInLoginView() {
 			var view = stackView.currentItem;
 			if (view.cppId == "homeView") {

@@ -12,6 +12,7 @@ class WindowControl : public QObject
 {
 	Q_OBJECT
 	Q_PROPERTY(QString errInfo READ getErrInfo WRITE setErrInfo NOTIFY errInfoChanged)
+	Q_PROPERTY(QString popupMessage READ getPopupMessage WRITE setPopupMessage NOTIFY popupMessageChanged)
 
 public:
 	WindowControl(QObject* parent = nullptr);
@@ -20,6 +21,8 @@ public:
 	//Q_PROPERTY
 	void setErrInfo(const QString& newErrInfo);
 	QString getErrInfo();
+	void setPopupMessage(const QString& popupMessage);
+	QString getPopupMessage();
 
 public slots:
 
@@ -29,6 +32,7 @@ private slots:
 signals:
 	//Q_PROPERTY
 	void errInfoChanged();
+	void popupMessageChanged();
 
 	//transitions buttons
 	void welcomeButtonClicked();
@@ -68,7 +72,7 @@ signals:
 
 	//state entered signals
 	void inStartView();
-	void inConnectedToServer();
+	void inConnectToServer();
 	void inLoginView();
 	void inLogin();
 	void inLogout();
@@ -88,6 +92,7 @@ signals:
 private:
 	//Q_PROPERTY
 	QString _errInfo;
+	QString _popupMessage;
 
 	//fsm
 	QStateMachine* _windowView;

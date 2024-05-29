@@ -1,7 +1,5 @@
 #include "include/WindowControl.h"
 
-#include "include/WindowViews.h"
-
 WindowControl::WindowControl(QObject* parent) : QObject(parent)
 {
 	_errInfo = "";
@@ -99,7 +97,7 @@ WindowControl::WindowControl(QObject* parent) : QObject(parent)
 
 	//entered signals
 	QObject::connect(_startView, &QState::entered, this, &WindowControl::inStartView);
-	QObject::connect(_connectToServer, &QState::entered, this, &WindowControl::inConnectedToServer);
+	QObject::connect(_connectToServer, &QState::entered, this, &WindowControl::inConnectToServer);
 	QObject::connect(_loginView, &QState::entered, this, &WindowControl::inLoginView);
 	QObject::connect(_login, &QState::entered, this, &WindowControl::inLogin);
 	QObject::connect(_logout, &QState::entered, this, &WindowControl::inLogout);
@@ -164,6 +162,23 @@ QString WindowControl::getErrInfo()
 	return _errInfo;
 }
 
+void WindowControl::setErrInfo(const QString& newErrInfo)
+{
+	_errInfo = newErrInfo;
+	emit errInfoChanged();
+}
+
+QString WindowControl::getPopupMessage()
+{
+	return _popupMessage;
+}
+
+void WindowControl::setPopupMessage(const QString& popupMessage)
+{
+	_popupMessage = popupMessage;
+	emit popupMessageChanged();
+}
+
 void WindowControl::stateInfo()
 {
 	QState* state = qobject_cast<QState*>(sender());
@@ -171,14 +186,4 @@ void WindowControl::stateInfo()
 	if (state) {
 		qDebug() << "Entered state:" << stateName;
 	}
-	if (stateName == "connectToServer")
-	{
-		emit connectionOk();
-	}
-}
-
-void WindowControl::setErrInfo(const QString& newErrInfo)
-{
-	_errInfo = newErrInfo;
-	emit errInfoChanged();
 }
