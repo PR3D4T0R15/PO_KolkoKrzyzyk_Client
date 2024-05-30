@@ -2,17 +2,17 @@
 
 #include <QObject>
 #include <QDebug>
-#include <QQuickItem>
 #include <QStateMachine>
 #include <QState>
 #include <QFinalState>
-#include <QStringList>
+#include <QJsonArray>
 
 class WindowControl : public QObject
 {
 	Q_OBJECT
 	Q_PROPERTY(QString errInfo READ getErrInfo WRITE setErrInfo NOTIFY errInfoChanged)
 	Q_PROPERTY(QString popupMessage READ getPopupMessage WRITE setPopupMessage NOTIFY popupMessageChanged)
+	Q_PROPERTY(QJsonArray playerRanking READ getPlayerRanking WRITE setPlayerRanking NOTIFY playerRankingChanged)
 
 public:
 	WindowControl(QObject* parent = nullptr);
@@ -23,6 +23,8 @@ public:
 	QString getErrInfo();
 	void setPopupMessage(const QString& popupMessage);
 	QString getPopupMessage();
+	void setPlayerRanking(const QJsonArray& list);
+	QJsonArray getPlayerRanking();
 
 public slots:
 
@@ -33,6 +35,7 @@ signals:
 	//Q_PROPERTY
 	void errInfoChanged();
 	void popupMessageChanged();
+	void playerRankingChanged();
 
 	//transitions buttons
 	void welcomeButtonClicked();
@@ -93,6 +96,7 @@ private:
 	//Q_PROPERTY
 	QString _errInfo;
 	QString _popupMessage;
+	QJsonArray _playerRanking;
 
 	//fsm
 	QStateMachine* _windowView;
@@ -112,7 +116,4 @@ private:
 	QState* _gameView;
 	QState* _endgameView;
 	QFinalState* _exit;
-
-	//lists
-	QStringList _buttons;
 };

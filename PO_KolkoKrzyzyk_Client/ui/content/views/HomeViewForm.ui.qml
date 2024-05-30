@@ -21,6 +21,7 @@ Item {
     state: "loginAccount"
     property alias rankingList: rankingList
     property alias playerRanking: playerRanking
+    property alias playerListModel: playerListModel
     property alias loader: loader
 
     GridLayout {
@@ -108,36 +109,6 @@ Item {
 
                 ListModel {
                     id: playerListModel
-                    ListElement {
-                        lp: "1"
-                        user: "User1"
-                        win: "64"
-                        lost: "21"
-                    }
-                    ListElement {
-                        lp: "2"
-                        user: "User2"
-                        win: "73"
-                        lost: "8"
-                    }
-                    ListElement {
-                        lp: "3"
-                        user: "User3"
-                        win: "567"
-                        lost: "2234"
-                    }
-                    ListElement {
-                        lp: "4"
-                        user: "User4"
-                        win: "236"
-                        lost: "243"
-                    }
-                    ListElement {
-                        lp: "5"
-                        user: "User5"
-                        win: "876"
-                        lost: "24"
-                    }
                 }
 
                 Component {

@@ -92,9 +92,6 @@ WindowControl::WindowControl(QObject* parent) : QObject(parent)
 	_endGame->addTransition(this, &WindowControl::playAgainButtonClicked, _startMatchmaking);			//button start another game
 	_endGame->addTransition(this, &WindowControl::goToMenuButtonClicked, _startMatchmaking);			//button go to menu
 
-
-	
-
 	//entered signals
 	QObject::connect(_startView, &QState::entered, this, &WindowControl::inStartView);
 	QObject::connect(_connectToServer, &QState::entered, this, &WindowControl::inConnectToServer);
@@ -129,7 +126,6 @@ WindowControl::WindowControl(QObject* parent) : QObject(parent)
 	QObject::connect(_gameView, &QState::entered, this, &WindowControl::stateInfo);
 	QObject::connect(_endgameView, &QState::entered, this, &WindowControl::stateInfo);
 
-
 	QObject::connect(_windowView, &QState::finished, this, &WindowControl::inExit);
 
 	_windowView->start();
@@ -157,6 +153,8 @@ WindowControl::~WindowControl()
 	_windowView->deleteLater();
 }
 
+
+//Q_PROPERTY - errInfo
 QString WindowControl::getErrInfo()
 {
 	return _errInfo;
@@ -168,6 +166,8 @@ void WindowControl::setErrInfo(const QString& newErrInfo)
 	emit errInfoChanged();
 }
 
+
+//Q_PROPERTY - popupMessage
 QString WindowControl::getPopupMessage()
 {
 	return _popupMessage;
@@ -179,6 +179,21 @@ void WindowControl::setPopupMessage(const QString& popupMessage)
 	emit popupMessageChanged();
 }
 
+
+//Q_PROPERTY - playerRanking
+QJsonArray WindowControl::getPlayerRanking()
+{
+	return _playerRanking;
+}
+
+void WindowControl::setPlayerRanking(const QJsonArray& list)
+{
+	_playerRanking = list;
+	emit playerRankingChanged();
+}
+
+
+//debug
 void WindowControl::stateInfo()
 {
 	QState* state = qobject_cast<QState*>(sender());
