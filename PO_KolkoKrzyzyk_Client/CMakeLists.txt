@@ -32,6 +32,12 @@ qt_add_executable("${PROJECT_NAME}"
     "include/TcpClient.h"
     "src/TcpClient.cpp"
 
+    "include/ConnectionManager.h"
+    "src/ConnectionManager.cpp"
+
+    "include/JsonDoc.h"
+    "src/JsonDoc.cpp"
+
     "include/GameControl.h"
     "src/GameControl.cpp"
 )

@@ -10,11 +10,21 @@ TcpClient::~TcpClient()
 	_socket->deleteLater();
 }
 
-void TcpClient::connect(QHostAddress address, quint8 port)
-{
-	_socket->connectToHost(address, port);
 
-	QObject::connect(_socket, &QAbstractSocket::stateChanged, this, &TcpClient::onSocketStateChanged);
+
+void TcpClient::connect()
+{
+	_socket->connectToHost("127.0.0.1", 4242);
+
+	if (_socket->waitForConnected(2000))
+	{
+		QObject::connect(_socket, &QAbstractSocket::readyRead, this, &TcpClient::receiveData);
+		emit connectionOk();
+	}
+	else
+	{
+		emit connectionNotOk();
+	}
 }
 
 void TcpClient::disconnect()
@@ -22,42 +32,13 @@ void TcpClient::disconnect()
 	_socket->disconnectFromHost();
 }
 
-void TcpClient::sendData(const QByteArray& data)
+void TcpClient::sendData(QByteArray data)
 {
+	_socket->write(data);
 }
 
-void TcpClient::onSocketStateChanged(QAbstractSocket::SocketState socketState)
+void TcpClient::receiveData()
 {
-	switch (socketState)
-	{
-	case QAbstractSocket::UnconnectedState:
-		qDebug() << "socket: UnconnectedState";
-		break;
-	case QAbstractSocket::HostLookupState:
-		qDebug() << "socket: HostLookupState";
-		break;
-	case QAbstractSocket::ConnectingState:
-		qDebug() << "socket: ConnectingState";
-		break;
-	case QAbstractSocket::ConnectedState:
-		qDebug() << "socket: ConnectedState";
-		break;
-	case QAbstractSocket::BoundState:
-		qDebug() << "socket: BoundState";
-		break;
-	case QAbstractSocket::ClosingState:
-		qDebug() << "socket: ClosingState";
-		break;
-	case QAbstractSocket::ListeningState:
-		qDebug() << "socket: ListeningState";
-		break;
-	}
-}
-
-void TcpClient::connected()
-{
-}
-
-void TcpClient::disconected()
-{
+	QByteArray data = _socket->readAll();
+	emit receivedData(data);
 }

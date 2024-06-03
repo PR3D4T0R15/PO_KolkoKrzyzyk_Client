@@ -4,9 +4,9 @@ HomeViewForm {
 	Connections {
 		target: windowControl
 
-		function onPlayerRankingChanged(data) {
+		function onPlayerRankingChanged() {
 			playerListModel.clear();
-			playerListModel.apped(data);
+			playerListModel.append(windowControl.playerRanking);
 		}
 	}
 }

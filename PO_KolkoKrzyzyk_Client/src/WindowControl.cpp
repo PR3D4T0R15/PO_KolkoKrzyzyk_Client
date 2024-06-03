@@ -31,17 +31,17 @@ WindowControl::WindowControl(QObject* parent) : QObject(parent)
 	_loginView->setObjectName("loginView");
 	_login->setObjectName("login");
 	_logout->setObjectName("logout");
-	_newAccountView->setObjectName("_newAccount");
+	_newAccountView->setObjectName("newAccount");
 	_createAccount->setObjectName("createAccount");
-	_homeView->setObjectName("_homeView");
+	_homeView->setObjectName("homeView");
 	_startMatchmaking->setObjectName("startMatchmaking");
 	_stopMatchmaking->setObjectName("stopMatchmaking");
 	_matchmakingView->setObjectName("_matchmakingView");
 	_startGame->setObjectName("startGame");
 	_endGame->setObjectName("endGame");
-	_gameView->setObjectName("_gameView");
-	_endgameView->setObjectName("_endgameView");
-	_exit->setObjectName("_exit");
+	_gameView->setObjectName("gameView");
+	_endgameView->setObjectName("endgameView");
+	_exit->setObjectName("exit");
 
 	//adding states to machine
 	_windowView->addState(_startView);
@@ -82,7 +82,7 @@ WindowControl::WindowControl(QObject* parent) : QObject(parent)
 	_homeView->addTransition(this, &WindowControl::playButtonClicked, _startMatchmaking);				//button  start matchmaking
 	_startMatchmaking->addTransition(this, &WindowControl::matchmakingNotOk, _homeView);				//signal error joining to matchmaking queue
 	_startMatchmaking->addTransition(this, &WindowControl::matchmakingOk, _matchmakingView);			//signal palyer in matchmaking queue
-	_matchmakingView->addTransition(this, &WindowControl::exitMatchmaking, _stopMatchmaking);			//button exit matchmaking queue
+	_matchmakingView->addTransition(this, &WindowControl::exitMatchmakingButtonClicked, _stopMatchmaking);			//button exit matchmaking queue
 	_stopMatchmaking->addTransition(this, &WindowControl::exitMatchmakingOk, _homeView);				//signal player removed from queue
 	_stopMatchmaking->addTransition(this, &WindowControl::exitMatchmakingNotOk, _matchmakingView);	//signal player not removed
 	_matchmakingView->addTransition(this, &WindowControl::gameReady, _startGame);						//signal game found
@@ -184,6 +184,11 @@ void WindowControl::setPopupMessage(const QString& popupMessage)
 QJsonArray WindowControl::getPlayerRanking()
 {
 	return _playerRanking;
+}
+
+void WindowControl::updatePlayerRanking(const QJsonArray& data)
+{
+	setPlayerRanking(data);
 }
 
 void WindowControl::setPlayerRanking(const QJsonArray& list)

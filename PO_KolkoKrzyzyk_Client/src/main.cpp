@@ -4,9 +4,11 @@
 #include <QQmlContext>
 #include <QIcon>
 #include <QResource>
+
+#include "include/ConnectionManager.h"
 #include "include/WindowControl.h"
 #include "include/GameControl.h"
-#include "include/WindowViews.h"
+#include "include/TcpClient.h"
 
 
 int main(int argc, char* argv[])
@@ -18,8 +20,18 @@ int main(int argc, char* argv[])
 	QGuiApplication app(argc, argv);
 	QQmlApplicationEngine engine;
 
+	//Connection manager
+	ConnectionManager* connManager = new ConnectionManager(&app);
+
 	//classes for QML signals and slots
 	WindowControl* windowControl = new WindowControl(&app);
+
+	QObject::connect(connManager, &ConnectionManager::connectionOk, windowControl, &WindowControl::connectionOk);
+	QObject::connect(connManager, &ConnectionManager::connectionNotOk, windowControl, &WindowControl::connectionNotOk);
+	QObject::connect(windowControl, &WindowControl::inConnectToServer, connManager, &ConnectionManager::connect);
+	QObject::connect(connManager, &ConnectionManager::updatePlayerRanking, windowControl, &WindowControl::updatePlayerRanking);
+	QObject::connect(windowControl, &WindowControl::sendNewAccountCred, connManager, &ConnectionManager::newAccountCredReceived);
+	QObject::connect(windowControl, &WindowControl::sendLoginCred, connManager, &ConnectionManager::loginCredReceived);
 
 	//classes register in QML
 	engine.rootContext()->setContextProperty("windowControl", windowControl);

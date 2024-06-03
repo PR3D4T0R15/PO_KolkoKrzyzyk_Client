@@ -14,7 +14,17 @@ NewAccountPanelForm{
     newAccountButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.createNewAccountButtonClicked();
+            var userName = loginField.text;
+            var pass1 = passField.text;
+            var pass2 = pass2Field.text;
+            var result1 = CheckUsername.validateUsername(userName);
+            var result2 = CheckPass.validatePass(pass1)
+            var result3 = CheckPass.checkIfEqual(pass1, pass2)
+
+            if (result1.valid && result2.valid && result1.valid) {
+                windowControl.createNewAccountButtonClicked();
+                windowControl.sendNewAccountCred(userName, pass1);
+            }
         }
     }
 

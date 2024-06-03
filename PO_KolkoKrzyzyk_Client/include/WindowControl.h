@@ -1,7 +1,6 @@
 #pragma once
 
 #include <QObject>
-#include <QDebug>
 #include <QStateMachine>
 #include <QState>
 #include <QFinalState>
@@ -27,6 +26,7 @@ public:
 	QJsonArray getPlayerRanking();
 
 public slots:
+	void updatePlayerRanking(const QJsonArray& data);
 
 private slots:
 	void stateInfo();
@@ -46,32 +46,37 @@ signals:
 	void logOutButtonClicked();
 	void exitButtonClicked();
 	void playButtonClicked();
+	void exitMatchmakingButtonClicked();
 	void gameLeaveButtonClicked();
 	void playAgainButtonClicked();
 	void goToMenuButtonClicked();
+	//transitions
+	void gameReady();
+	void gameStarted();
+	void gameEnd();
 
+	//buttons on side
 	void aboutButtonClicked();
 	void settingsButtonClicked();
 	void soundButtonClicked();
 
+	//transition signals
 	void connectionOk();
 	void connectionNotOk();
+
 	void accountCreated();
 	void accountNotCreated();
+
 	void loginOk();
 	void loginNotOk();
+
 	void logoutOk();
+
 	void matchmakingNotOk();
 	void matchmakingOk();
+
 	void exitMatchmakingOk();
 	void exitMatchmakingNotOk();
-
-	
-	void exitMatchmaking();
-	void gameReady();
-	void gameStarted();
-	void gameEnd();
-	
 
 	//state entered signals
 	void inStartView();
@@ -91,6 +96,9 @@ signals:
 	void inEndGameView();
 	void inExit();
 
+	//sending data
+	void sendNewAccountCred(QString username, QString pass);
+	void sendLoginCred(QString username, QString pass);
 
 private:
 	//Q_PROPERTY

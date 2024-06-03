@@ -19,6 +19,7 @@ Item {
     property alias newAccountButton: newAccountButton
     property alias passField: passField
     property alias loginField: loginField
+    property alias errorText: errorText
 
     CustomTextField {
         id: loginField
@@ -42,7 +43,7 @@ Item {
         x: 123
         y: 212
         color: "#920014"
-        text: qsTr("Nieprawidłowy login lub hasło")
+        text: qsTr("")
         anchors.top: passField.bottom
         anchors.topMargin: 25
         font.pixelSize: 14

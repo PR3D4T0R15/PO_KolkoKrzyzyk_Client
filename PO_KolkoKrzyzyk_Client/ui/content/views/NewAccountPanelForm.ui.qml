@@ -54,7 +54,7 @@ Item {
         x: 123
         y: 227
         color: "#920014"
-        text: qsTr("Nieprawidłowy login lub hasło")
+        text: qsTr("")
         anchors.top: pass2Field.bottom
         anchors.topMargin: 10
         font.pixelSize: 14

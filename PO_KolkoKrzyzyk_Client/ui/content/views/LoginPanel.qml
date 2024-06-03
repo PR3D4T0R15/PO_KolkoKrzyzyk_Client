@@ -4,8 +4,11 @@ import "../sounds"
 LoginPanelForm {
     logInButton {
         onClicked: {
-            sound.buttonClickSound.play()
+            var userName = loginField.text;
+            var pass = passField.text;
+            sound.buttonClickSound.play();
             windowControl.logInButtonClicked();
+            windowControl.sendLoginCred(userName, pass);
         }
     }
 

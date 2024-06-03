@@ -114,7 +114,7 @@ Item {
                 Component {
                     id: playerDelegate
                     Item {
-                        width: parent.width
+                        //width: parent.width
                         height: 40
 
                         Rectangle {

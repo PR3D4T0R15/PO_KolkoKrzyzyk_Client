@@ -14,17 +14,19 @@ public:
 	~TcpClient();
 
 public slots:
-	void connect(QHostAddress address, quint8 port);
+	void connect();
 	void disconnect();
-	void sendData(const QByteArray& data);
+
+	void sendData(QByteArray data);
 
 private slots:
-	void onSocketStateChanged(QAbstractSocket::SocketState socketState);
-	void connected();
-	void disconected();
+	void receiveData();
 
 signals:
-	void dataReceived(const QByteArray& data);
+	void receivedData(const QByteArray& data);
+
+	void connectionOk();
+	void connectionNotOk();
 
 
 private:
