@@ -17,21 +17,20 @@ public:
 	~ConnectionManager();
 
 public slots:
-	void newAccountCredReceived(const QString& username, const QString& pass);
-	void loginCredReceived(QString username, QString pass);
 
 private slots:
 	void receivedData(const QByteArray& data);
 
-signals:
-	void connect();
+	//polaczono i odlaczono do serwera
+	void connected();
+	void disconnected();
 
-	void connectionOk();
-	void connectionNotOk();
+signals:
+	//polacz i odlacz
+	void connect();
+	void disconnect();
 
 	void sendData(QByteArray data);
-
-	void updatePlayerRanking(const QJsonArray& data);
 
 private:
 	void setConnectionId(const QString& connId);
@@ -40,9 +39,9 @@ private:
 	void setClientId(const QString& clientId);
 	QString getClientId();
 
-
 private:
 	TcpClient* _client;
 	QString _connectionId;
 	QString _clientId;
+	bool _connStatus;
 };

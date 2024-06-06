@@ -1,50 +1,32 @@
 #include "include/ConnectionManager.h"
-
+//konstruktor
 ConnectionManager::ConnectionManager(QObject *parent): QObject(parent)
 {
 	_client = new TcpClient;
 
-	QObject::connect(_client, &TcpClient::connectionOk, this, &ConnectionManager::connectionOk);
-	QObject::connect(_client, &TcpClient::connectionNotOk, this, &ConnectionManager::connectionNotOk);
 	QObject::connect(this, &ConnectionManager::connect, _client, &TcpClient::connect);
-	QObject::connect(_client, &TcpClient::receivedData, this, &ConnectionManager::receivedData);
+	QObject::connect(this, &ConnectionManager::disconnect, _client, &TcpClient::disconnect);
+	QObject::connect(this, &ConnectionManager::connected, _client, &TcpClient::connected);
+	QObject::connect(this, &ConnectionManager::disconnected, _client, &TcpClient::disconnected);
 	QObject::connect(this, &ConnectionManager::sendData, _client, &TcpClient::sendData);
+	QObject::connect(_client, &TcpClient::receivedData, this, &ConnectionManager::receivedData);
 }
 
+//destruktor
 ConnectionManager::~ConnectionManager()
 {
 	_client->disconnect();
 	_client->deleteLater();
 }
 
-void ConnectionManager::newAccountCredReceived(const QString& username, const QString& pass)
-{
-	QJsonDocument jsonDoc = jsonDoc::AccountDoc::newAccount(username, pass);
-	QByteArray jsonByte = jsonDoc::JsonDoc::toBytes(jsonDoc);
 
-	emit sendData(jsonByte);
-}
-
-void ConnectionManager::loginCredReceived(QString username, QString pass)
-{
-	QJsonDocument jsonDoc = jsonDoc::AccountDoc::logIn(username, pass);
-	QByteArray jsonByte = jsonDoc::JsonDoc::toBytes(jsonDoc);
-
-	emit sendData(jsonByte);
-}
 
 void ConnectionManager::receivedData(const QByteArray& data)
 {
-	QJsonDocument jsonDoc = jsonDoc::JsonDoc::toJson(data);
-
-	QString action = jsonDoc::JsonDoc::getAction(jsonDoc);
-
-	if (action == "rankingUpdate")
-	{
-		QJsonArray data = jsonDoc::JsonDoc::getData(jsonDoc);
-		emit updatePlayerRanking(data);
-	}
+	//TODO received data process
 }
+
+
 
 void ConnectionManager::setConnectionId(const QString& connId)
 {
