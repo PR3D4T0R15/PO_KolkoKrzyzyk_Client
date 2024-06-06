@@ -14,20 +14,24 @@ public:
 	~TcpClient();
 
 public slots:
+	//polacz i odlacz
 	void connect();
 	void disconnect();
 
-	void sendData(QByteArray data);
+	//wyslij dane
+	void sendData(const QByteArray& data);
 
 private slots:
+	//dane odebrane
 	void receiveData();
 
 signals:
+	//polaczono i odlaczono do serwera
+	void connected();
+	void disconnected();
+
+	//odebrano dane
 	void receivedData(const QByteArray& data);
-
-	void connectionOk();
-	void connectionNotOk();
-
 
 private:
 	QTcpSocket* _socket;
