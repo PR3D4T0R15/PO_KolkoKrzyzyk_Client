@@ -4,19 +4,17 @@ import "controls"
 import "views"
 import "sounds"
 import QtQuick.Layouts
-import QtQuick.Studio.Components
 import QtQuick.Effects
 
-Window {
+Rectangle {
     id: aboutWindow
     property string cppId: "aboutWindow"
     width: 700
     height: 700
-    maximumWidth: 700
-    maximumHeight: 700
-    minimumWidth: 700
-    minimumHeight: 700
-    modality: Qt.ApplicationModal
+    //maximumWidth: 700
+    //maximumHeight: 700
+    //minimumWidth: 700
+    //minimumHeight: 700
     color: "#ffcf99"
 
     Rectangle {

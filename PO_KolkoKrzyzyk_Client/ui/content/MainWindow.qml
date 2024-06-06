@@ -5,11 +5,15 @@ import "controls"
 import "views"
 import "sounds"
 import "popups"
+import backend.WindowControl 1.0
+import backend.MainWindowControl 1.0
 
 Window {
 	id: mainWindow
 
 	property string cppId: "mainWindow"
+	property alias windowControl: windowControl
+	property alias mainWindowControl: mainWindowControl
 
 	color: "#ffcf99"
 	height: 720
@@ -18,6 +22,23 @@ Window {
 	//visibility: Window.Maximized
 	visible: true
 	width: 1280
+
+	WindowControl {
+		id: windowControl
+
+		onViewChanged: {
+			stackView.replace(windowControl.view);
+		}
+	}
+
+	MainWindowControl {
+		id: mainWindowControl
+
+		onPopupMessageChanged: {
+			gameInfoPopup.textMessage = mainWindowControl.popupMessage;
+			gameInfoPopup.open();
+		}
+	}
 
 	ColumnLayout {
 		id: buttonBar
@@ -42,7 +63,7 @@ Window {
 
 			onClicked: {
 				sound.buttonClickSound.play();
-				windowControl.soundButtonClicked();
+				mainWindowControl.soundButtonClicked();
 			}
 		}
 		AboutButton {
@@ -56,7 +77,7 @@ Window {
 
 			onClicked: {
 				sound.buttonClickSound.play();
-				windowControl.aboutButtonClicked();
+				mainWindowControl.aboutButtonClicked();
 			}
 		}
 		SettingsButton {
@@ -70,7 +91,7 @@ Window {
 
 			onClicked: {
 				sound.buttonClickSound.play();
-				windowControl.settingsButtonClicked();
+				mainWindowControl.settingsButtonClicked();
 			}
 		}
 	}
@@ -85,50 +106,19 @@ Window {
 		anchors.rightMargin: 20
 		anchors.top: parent.top
 		anchors.topMargin: 20
-		initialItem: ""
+		initialItem: "views/StartView.qml"
 	}
 	GameInfoPopup {
-        id: gameInfoPopup
-        visible: false
-    }
-	
+		id: gameInfoPopup
+
+		visible: false
+	}
+
 	//sound manager
 	SoundsControls {
 		id: sound
-
 	}
-
-	//CppQML integration
-	Connections {
-		function onPopupMessageChanged() {
-			gameInfoPopup.textMessage = windowControl.popupMessage;
-			gameInfoPopup.open();
-		}
-
-		function onInLoginView() {
-			var view = stackView.currentItem;
-			if (view.cppId == "homeView") {
-				view.state = "loginAccount";
-			} else {
-				stackView.replace("views/HomeView.qml");
-				var view = stackView.currentItem;
-				view.state = "loginAccount";
-			}
-		}
-		function onInNewAccountView() {
-			var view = stackView.currentItem;
-			if (view.cppId == "homeView") {
-				view.state = "newAccount";
-			} else {
-				stackView.replace("views/HomeView.qml");
-				var view = stackView.currentItem;
-				view.state = "newAccount";
-			}
-		}
-		function onInStartView() {
-			stackView.replace("views/StartView.qml");
-		}
-
-		target: windowControl
+	SoundsControls {
+		id: soundBackground
 	}
 }

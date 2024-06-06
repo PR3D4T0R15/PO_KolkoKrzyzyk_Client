@@ -14,6 +14,9 @@ public:
 	~TcpClient();
 
 public slots:
+	//polacz i odlacz
+	void connect();
+	void disconnect();
 	//wyslij dane
 	void sendData(const QByteArray& data);
 
@@ -22,10 +25,6 @@ private slots:
 	void receiveData();
 
 signals:
-	//polacz i odlacz
-	void connect();
-	void disconnect();
-
 	//polaczono i odlaczono do serwera
 	void connected();
 	void disconnected();

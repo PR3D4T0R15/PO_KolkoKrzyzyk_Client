@@ -1,14 +1,15 @@
-#include "include/main.h"
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QQmlEngine>
 #include <QIcon>
 #include <QResource>
 
 #include "include/ConnectionManager.h"
 #include "include/WindowControl.h"
-#include "include/GameControl.h"
-#include "include/TcpClient.h"
+#include "include/MainWindowControl.h"
+#include "include/StartViewControl.h"
 
 
 int main(int argc, char* argv[])
@@ -23,18 +24,10 @@ int main(int argc, char* argv[])
 	//Connection manager
 	ConnectionManager* connManager = new ConnectionManager(&app);
 
-	//classes for QML signals and slots
-	WindowControl* windowControl = new WindowControl(&app);
-
-	QObject::connect(connManager, &ConnectionManager::connectionOk, windowControl, &WindowControl::connectionOk);
-	QObject::connect(connManager, &ConnectionManager::connectionNotOk, windowControl, &WindowControl::connectionNotOk);
-	QObject::connect(windowControl, &WindowControl::inConnectToServer, connManager, &ConnectionManager::connect);
-	QObject::connect(connManager, &ConnectionManager::updatePlayerRanking, windowControl, &WindowControl::updatePlayerRanking);
-	QObject::connect(windowControl, &WindowControl::sendNewAccountCred, connManager, &ConnectionManager::newAccountCredReceived);
-	QObject::connect(windowControl, &WindowControl::sendLoginCred, connManager, &ConnectionManager::loginCredReceived);
-
-	//classes register in QML
-	engine.rootContext()->setContextProperty("windowControl", windowControl);
+	//Cpp classes in QML
+	qmlRegisterType<WindowControl>("backend.WindowControl", 1, 0, "WindowControl");
+	qmlRegisterType<MainWindowControl>("backend.MainWindowControl", 1, 0, "MainWindowControl");
+	qmlRegisterType<StartViewControl>("backend.StartViewControl", 1, 0, "StartViewControl");
 
 	//default setup
 	QGuiApplication::setWindowIcon(QIcon(":/content/images/ico256x256.png"));
@@ -55,6 +48,15 @@ int main(int argc, char* argv[])
 	if (engine.rootObjects().isEmpty())
 	{
 		return -1;
+	}
+
+	QObject* rootQml = engine.rootObjects().first();
+
+	//find WindowControl
+	WindowControl* windowControl = rootQml->findChild<WindowControl*>("windowControl");
+	if (windowControl)
+	{
+		
 	}
 
 

@@ -22,24 +22,26 @@ find_package(Qt6 REQUIRED COMPONENTS StateMachine)
 qt_standard_project_setup()
 
 ## Qt ADD EXE ##
-qt_add_executable("${PROJECT_NAME}"
-    "include/main.h"    
+qt_add_executable("${PROJECT_NAME}"  
     "src/main.cpp"
 
-    "include/WindowControl.h"
+    "include/WindowControl.h" #class exposed to QML
     "src/WindowControl.cpp"
 
-    "include/TcpClient.h"
+    "include/MainWindowControl.h" #class exposed to QML
+    "src/MainWindowControl.cpp"
+
+    "include/StartViewControl.h" #class exposed to QML
+    "src/StartViewControl.cpp"
+
+    "include/TcpClient.h" #class for tcp socket client
     "src/TcpClient.cpp"
 
-    "include/ConnectionManager.h"
+    "include/ConnectionManager.h" #class for sending and receiving data
     "src/ConnectionManager.cpp"
 
-    "include/JsonDoc.h"
+    "include/JsonDoc.h" #class for building data
     "src/JsonDoc.cpp"
-
-    "include/GameControl.h"
-    "src/GameControl.cpp"
 )
 
 ## Qt resources ##
