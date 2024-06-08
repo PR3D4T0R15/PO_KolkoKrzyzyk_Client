@@ -18,6 +18,8 @@ void MainWindowControl::aboutButtonClicked()
 	_aboutWindow = new QQuickView();
 	_aboutWindow->setSource(QUrl(QStringLiteral("qrc:/content/AboutWindow.qml")));
 	_aboutWindow->show();
+	//TODO memoryleak!
+	QObject::connect(_aboutWindow, &QQuickView::closing, this, [this]() {_aboutWindow->deleteLater(); });
 }
 
 void MainWindowControl::settingsButtonClicked()
