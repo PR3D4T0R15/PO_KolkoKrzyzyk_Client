@@ -10,17 +10,26 @@ TcpClient::~TcpClient()
 	_socket->deleteLater();
 }
 
+bool TcpClient::getState()
+{
+	QAbstractSocket::SocketState state = _socket->state();
+
+	if (state == QAbstractSocket::ConnectedState)
+	{
+		return true;
+	}
+	return false;
+}
 
 
 void TcpClient::connect()
 {   
-	_socket->connectToHost("127.0.0.1", 4242);		
+	_socket->connectToHost("192.168.244.131", 2390);		
 
-	if (_socket->waitForConnected(2000))
+	if (_socket->waitForConnected(1))
 	{
 		QObject::connect(_socket, &QAbstractSocket::readyRead, this, &TcpClient::receiveData);
-		QObject::connect(_socket, &QAbstractSocket::connected, this, &TcpClient::connected);
-		QObject::connect(_socket, &QAbstractSocket::disconnected, this, &TcpClient::disconnected);
+		QObject::connect(_socket, &QAbstractSocket::stateChanged, this, &TcpClient::stateChanged);
 	}
 }
 

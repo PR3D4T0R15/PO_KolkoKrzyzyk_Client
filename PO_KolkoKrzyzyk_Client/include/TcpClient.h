@@ -13,6 +13,8 @@ public:
 	TcpClient(QObject *parent = nullptr);
 	~TcpClient();
 
+	bool getState();
+
 public slots:
 	//polacz i odlacz
 	void connect();
@@ -25,9 +27,8 @@ private slots:
 	void receiveData();
 
 signals:
-	//polaczono i odlaczono do serwera
-	void connected();
-	void disconnected();
+	//stan polaczenia
+	void stateChanged(const QAbstractSocket::SocketState& state);
 
 	//odebrano dane
 	void receivedData(const QByteArray& data);
