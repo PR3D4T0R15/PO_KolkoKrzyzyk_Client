@@ -6,10 +6,11 @@ ConnectionManager::ConnectionManager(QObject *parent): QObject(parent)
 
 	QObject::connect(this, &ConnectionManager::connect, _client, &TcpClient::connect);
 	QObject::connect(this, &ConnectionManager::disconnect, _client, &TcpClient::disconnect);
-	QObject::connect(_client, &TcpClient::connected, this, &ConnectionManager::connected);
-	QObject::connect(_client, &TcpClient::disconnected, this, &ConnectionManager::disconnected);
+	QObject::connect(_client, &TcpClient::stateChanged, this, &ConnectionManager::stateChanged);
 	QObject::connect(this, &ConnectionManager::sendData, _client, &TcpClient::sendData);
 	QObject::connect(_client, &TcpClient::receivedData, this, &ConnectionManager::receivedData);
+
+	connect();
 }
 
 //destruktor
@@ -19,14 +20,43 @@ ConnectionManager::~ConnectionManager()
 	_client->deleteLater();
 }
 
+void ConnectionManager::sendDataFromQml(const QJsonDocument& jsonDoc)
+{
+	QByteArray data = jsonDoc::JsonDoc::toBytes(jsonDoc);
+
+	emit sendData(data);
+}
 
 
 void ConnectionManager::receivedData(const QByteArray& data)
 {
 	//TODO received data process
-	qDebug() << data;
+	QJsonDocument requestJsonDoc = jsonDoc::JsonDoc::toJson(data);
+	QString action = jsonDoc::JsonDoc::getAction(requestJsonDoc);
+
+	if (action == "connection")
+	{
+		jsonDoc::Conn conn;
+		conn.setJson(requestJsonDoc);
+
+		QString connId = conn.getConnId();
+		setConnectionId(connId);
+	}
+
+	emit sendDataToQml(requestJsonDoc);
 }
 
+void ConnectionManager::stateChanged(const QAbstractSocket::SocketState& state)
+{
+	if (state == QAbstractSocket::ConnectedState)
+	{
+		emit socketConnStatus(true);
+	}
+	if (state == QAbstractSocket::UnconnectedState)
+	{
+		emit socketConnStatus(false);
+	}
+}
 
 
 void ConnectionManager::setConnectionId(const QString& connId)
@@ -45,12 +75,4 @@ void ConnectionManager::setClientId(const QString& clientId)
 QString ConnectionManager::getClientId()
 {
 	return _clientId;
-}
-
-void ConnectionManager::connected()
-{
-}
-
-void ConnectionManager::disconnected()
-{
 }

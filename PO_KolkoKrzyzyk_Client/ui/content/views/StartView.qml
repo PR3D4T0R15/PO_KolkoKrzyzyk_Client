@@ -12,6 +12,7 @@ StartViewForm {
     
     StartViewControl {
         id: startViewControl
+       
     }
 
     SoundsControls {

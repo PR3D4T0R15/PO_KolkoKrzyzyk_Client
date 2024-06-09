@@ -1,4 +1,4 @@
-
+﻿
 
 /*
 This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
@@ -19,6 +19,7 @@ Item {
 
     anchors.fill: parent
     state: "loginAccount"
+    property alias homeView: homeView
     property alias rankingList: rankingList
     property alias playerRanking: playerRanking
     property alias playerListModel: playerListModel

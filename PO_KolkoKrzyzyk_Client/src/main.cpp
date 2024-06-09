@@ -10,6 +10,7 @@
 #include "include/WindowControl.h"
 #include "include/MainWindowControl.h"
 #include "include/StartViewControl.h"
+#include "include/HomeViewControl.h"
 
 
 int main(int argc, char* argv[])
@@ -23,11 +24,16 @@ int main(int argc, char* argv[])
 
 	//Connection manager
 	ConnectionManager* connManager = new ConnectionManager(&app);
+	
 
 	//Cpp classes in QML
 	qmlRegisterType<WindowControl>("backend.WindowControl", 1, 0, "WindowControl");
 	qmlRegisterType<MainWindowControl>("backend.MainWindowControl", 1, 0, "MainWindowControl");
 	qmlRegisterType<StartViewControl>("backend.StartViewControl", 1, 0, "StartViewControl");
+	qmlRegisterType<HomeViewControl>("backend.HomeViewControl", 1, 0, "HomeViewControl");
+
+	QQmlContext* rootContext = engine.rootContext();
+	rootContext->setContextProperty("connManager", connManager);
 
 	//default setup
 	QGuiApplication::setWindowIcon(QIcon(":/content/images/ico256x256.png"));
@@ -49,16 +55,6 @@ int main(int argc, char* argv[])
 	{
 		return -1;
 	}
-
-	QObject* rootQml = engine.rootObjects().first();
-
-	//find WindowControl
-	WindowControl* windowControl = rootQml->findChild<WindowControl*>("windowControl");
-	if (windowControl)
-	{
-		
-	}
-
 
 	return app.exec();
 }

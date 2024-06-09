@@ -7,7 +7,7 @@ NewAccountPanelForm{
     logInButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.goToLoginButtonClicked();
+            homeView.homeViewControl.goToLoginButtonClicked();
         }
     }
 
@@ -22,8 +22,9 @@ NewAccountPanelForm{
             var result3 = CheckPass.checkIfEqual(pass1, pass2)
 
             if (result1.valid && result2.valid && result1.valid) {
-                windowControl.createNewAccountButtonClicked();
-                windowControl.sendNewAccountCred(userName, pass1);
+                homeView.homeViewControl.login = userName;
+                homeView.homeViewControl.password = pass1;
+                homeView.homeViewControl.createNewAccountButtonClicked();
             }
         }
     }

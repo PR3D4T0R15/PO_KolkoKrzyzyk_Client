@@ -5,23 +5,27 @@ PlayPanelForm {
     playButton {
         onClicked: {
             sound.buttonClickSound.play();
-            windowControl.playButtonClicked();
+            homeView.homeViewControl.playButtonClicked();
         }
     }
     logOutButton {
         onClicked: {
             sound.buttonClickSound.play();
-            windowControl.logOutButtonClicked();
+            homeView.homeViewControl.logOutButtonClicked();
         }
     }
     exitButton {
         onClicked: {
             sound.buttonClickSound.play();
-            windowControl.exitButtonClicked();
+            homeView.homeViewControl.exitButtonClicked();
         }
     }
 
     SoundsControls {
         id: sound
+    }
+
+    Component.onCompleted: {
+        homeView.homeViewControl.changeView.connect(mainWindow.windowControl.changeView);
     }
 }

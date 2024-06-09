@@ -7,15 +7,16 @@ LoginPanelForm {
             var userName = loginField.text;
             var pass = passField.text;
             sound.buttonClickSound.play();
-            windowControl.logInButtonClicked();
-            windowControl.sendLoginCred(userName, pass);
+            homeView.homeViewControl.login = loginField.text;
+            homeView.homeViewControl.password = passField.text;
+            homeView.homeViewControl.logInButtonClicked();
         }
     }
 
     newAccountButton {
         onClicked: {
             sound.buttonClickSound.play()
-            windowControl.newAccountButtonClicked();
+            homeView.homeViewControl.newAccountButtonClicked();
         }
     }
 

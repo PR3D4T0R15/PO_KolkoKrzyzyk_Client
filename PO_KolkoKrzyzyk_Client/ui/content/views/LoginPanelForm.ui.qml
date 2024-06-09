@@ -43,7 +43,7 @@ Item {
         x: 123
         y: 212
         color: "#920014"
-        text: qsTr("")
+        text: homeViewControl.loginInfoString
         anchors.top: passField.bottom
         anchors.topMargin: 25
         font.pixelSize: 14

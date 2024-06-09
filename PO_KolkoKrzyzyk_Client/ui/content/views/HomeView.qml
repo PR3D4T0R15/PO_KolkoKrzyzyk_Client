@@ -1,12 +1,22 @@
-import QtQuick
+﻿import QtQuick
+import backend.HomeViewControl 1.0
 
 HomeViewForm {
-	Connections {
-		target: windowControl
+	property alias homeViewControl: homeViewControl
 
-		function onPlayerRankingChanged() {
+	HomeViewControl {
+		id: homeViewControl
+		onChangeState: function(stateStr) { homeView.state = stateStr }
+
+		onPlayerRankingChanged: {
 			playerListModel.clear();
-			playerListModel.append(windowControl.playerRanking);
+			playerListModel.append(homeViewControl.playerRanking);
 		}
 	}
+
+	Component.onCompleted: {
+        connManager.sendDataToQml.connect(homeViewControl.receiveData);
+		homeViewControl.sendData.connect(connManager.sendDataFromQml);
+		homeViewControl.queryPlayerRanking();
+    }
 }

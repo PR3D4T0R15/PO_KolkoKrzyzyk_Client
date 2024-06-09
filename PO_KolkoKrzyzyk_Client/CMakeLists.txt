@@ -34,6 +34,9 @@ qt_add_executable("${PROJECT_NAME}"
     "include/StartViewControl.h" #class exposed to QML
     "src/StartViewControl.cpp"
 
+    "include/HomeViewControl.h" #class exposed to QML
+    "src/HomeViewControl.cpp"
+
     "include/TcpClient.h" #class for tcp socket client
     "src/TcpClient.cpp"
 

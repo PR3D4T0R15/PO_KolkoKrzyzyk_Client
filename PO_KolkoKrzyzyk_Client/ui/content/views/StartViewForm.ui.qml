@@ -71,7 +71,7 @@ Item {
                 Text {
                     id: errorText
                     color: "#920014"
-                    text: windowControl.errInfo
+                    text: startViewControl.errorString
                     font.pixelSize: 14
                     font.bold: true
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter

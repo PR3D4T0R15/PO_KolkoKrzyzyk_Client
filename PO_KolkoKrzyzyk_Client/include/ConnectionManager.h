@@ -5,6 +5,7 @@
 #include <QByteArray>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QTcpSocket>
 #include "include/TcpClient.h"
 #include "include/JsonDoc.h"
 
@@ -17,20 +18,27 @@ public:
 	~ConnectionManager();
 
 public slots:
-
+	//odbierz dane z ui
+	void sendDataFromQml(const QJsonDocument& jsonDoc);
 private slots:
+	//odbierz dane z serwera
 	void receivedData(const QByteArray& data);
 
 	//polaczono i odlaczono do serwera
-	void connected();
-	void disconnected();
+	void stateChanged(const QAbstractSocket::SocketState& state);
 
 signals:
 	//polacz i odlacz
 	void connect();
 	void disconnect();
 
+	//wyslij dane do serwera
 	void sendData(QByteArray data);
+
+	//wyslij dane do ui
+	void sendDataToQml(const QJsonDocument& data);
+
+	void socketConnStatus(const bool& status);
 
 private:
 	void setConnectionId(const QString& connId);
@@ -43,5 +51,6 @@ private:
 	TcpClient* _client;
 	QString _connectionId;
 	QString _clientId;
-	bool _connStatus;
+
+	bool _connectionStatus;
 };
