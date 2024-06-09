@@ -1,42 +1,77 @@
 #pragma once
 
-#include <QJsonDocument>
 #include <QString>
 #include <QByteArray>
 #include <QCryptographicHash>
+#include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QJsonArray>
+#include <QRandomGenerator>
+#include <QDateTime>
 
 namespace jsonDoc
 {
 	class JsonDoc
 	{
 	public:
+		JsonDoc();
 		static QString getAction(const QJsonDocument& jsonDoc);
-		static QJsonArray getData(const QJsonDocument& jsonDoc);
+		static QJsonObject getData(const QJsonDocument& jsonDoc);
+
 		static QByteArray toBytes(const QJsonDocument& jsonDoc);
 		static QJsonDocument toJson(const QByteArray& jsonByte);
 
-	protected:
 		static QString hashData(const QString& data);
-		static QJsonObject createData(const QString& username, const QString& password);
-		static QJsonObject createData(const QString& username);
-		static QJsonObject createData(const QString& username, const bool& status);
+
+		void setJson(const QJsonDocument& jsonDoc);
+		void setJson(const QJsonObject& jsonObj);
+
+		QJsonDocument getJsonDoc();
+		QJsonObject getJsonObj();
+
+	protected:
+		void setDataObject(const QString& objName, const QString& objValue);
+		void setDataObject(const QString& objName, const bool& objValue);
+		QString getDataObjectStr(const QString& objName);
+		bool getDataObjectBool(const QString& objName);
+
+	protected:
+		QJsonObject _rootObj;
 	};
 
-	class AccountDoc : JsonDoc
+	class Conn : public JsonDoc
 	{
 	public:
-		static QJsonDocument logIn(const QString& username, const QString& password);
-		static QJsonDocument newAccount(const QString& username, const QString& password);
-		static QJsonDocument logOut(const QString& username);		
+		Conn();
+		void setConnId(const QString& connId);
+		QString getConnId();
 	};
 
-	class MatchDoc : JsonDoc
+	class Account : public JsonDoc
 	{
 	public:
-		static QJsonDocument joinMatchmaking(const QString& username, const bool& status);
+		Account();
+		void setLogin();
+		void setLogout();
+		void setNewaccount();
+
+		void setUsername(const QString& username);
+		QString getUsername();
+
+		void setPassword(const QString& password);
+		QString getPassword();
+
+		void setResult(const bool& result);
+		bool getResult();
 	};
 
+	class Ranking : public JsonDoc
+	{
+	public:
+		Ranking();
+		void setRankning(const QJsonDocument& jsonDoc);
+		QJsonDocument getRanking();
+
+	};
 }

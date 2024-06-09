@@ -1,25 +1,33 @@
 #include "include/JsonDoc.h"
 
-QString jsonDoc::JsonDoc::getAction(const QJsonDocument& jsonDoc)
+//JsonDoc class
+jsonDoc::JsonDoc::JsonDoc()
 {
-	if (!jsonDoc.isNull())
-	{
-		QJsonObject jsonObj = jsonDoc.object();
-		QString action = jsonObj["action"].toString();
-
-		return action;
-	}
-	return nullptr;
+	QJsonObject dataObj;
+	_rootObj["data"] = dataObj;
 }
 
-QJsonArray jsonDoc::JsonDoc::getData(const QJsonDocument& jsonDoc)
+QString jsonDoc::JsonDoc::getAction(const QJsonDocument& jsonDoc)
 {
-	QJsonArray array;
+	QString action;
 
 	if (!jsonDoc.isNull())
 	{
 		QJsonObject jsonObj = jsonDoc.object();
-		array = jsonObj["data"].toArray();
+		action = jsonObj["action"].toString();
+	}
+
+	return action;
+}
+
+QJsonObject jsonDoc::JsonDoc::getData(const QJsonDocument& jsonDoc)
+{
+	QJsonObject array;
+
+	if (!jsonDoc.isNull())
+	{
+		QJsonObject jsonObj = jsonDoc.object();
+		array = jsonObj["data"].toObject();
 	}
 
 	return array;
@@ -27,7 +35,7 @@ QJsonArray jsonDoc::JsonDoc::getData(const QJsonDocument& jsonDoc)
 
 QByteArray jsonDoc::JsonDoc::toBytes(const QJsonDocument& jsonDoc)
 {
-	return jsonDoc.toJson();
+	return jsonDoc.toJson(QJsonDocument::Compact);
 }
 
 QJsonDocument jsonDoc::JsonDoc::toJson(const QByteArray& jsonByte)
@@ -35,7 +43,6 @@ QJsonDocument jsonDoc::JsonDoc::toJson(const QByteArray& jsonByte)
 	return QJsonDocument::fromJson(jsonByte);
 }
 
-//jsonDoc - private
 QString jsonDoc::JsonDoc::hashData(const QString& data)
 {
 	QByteArray dataByte = data.toUtf8();
@@ -43,84 +50,169 @@ QString jsonDoc::JsonDoc::hashData(const QString& data)
 	return QCryptographicHash::hash(dataByte, QCryptographicHash::Sha256).toHex();
 }
 
-QJsonObject jsonDoc::JsonDoc::createData(const QString& username, const QString& password)
+void jsonDoc::JsonDoc::setJson(const QJsonDocument& jsonDoc)
 {
-	QJsonObject dataObject;
-	dataObject["username"] = username;
-	dataObject["password"] = jsonDoc::JsonDoc::hashData(password);
-
-	return dataObject;
+	_rootObj = jsonDoc.object();
 }
 
-QJsonObject jsonDoc::JsonDoc::createData(const QString& username)
+void jsonDoc::JsonDoc::setJson(const QJsonObject& jsonObj)
 {
-	QJsonObject dataObject;
-	dataObject["username"] = username;
-
-	return dataObject;
+	_rootObj = jsonObj;
 }
 
-QJsonObject jsonDoc::JsonDoc::createData(const QString& username, const bool& status)
+QJsonDocument jsonDoc::JsonDoc::getJsonDoc()
 {
-	QJsonObject dataObject;
-	dataObject["username"] = username;
-	if (status)
+	QJsonDocument jsonDoc(_rootObj);
+
+	return jsonDoc;
+}
+
+QJsonObject jsonDoc::JsonDoc::getJsonObj()
+{
+	return _rootObj;
+}
+
+void jsonDoc::JsonDoc::setDataObject(const QString& objName, const QString& objValue)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+
+	dataObj[objName] = objValue;
+
+	_rootObj["data"] = dataObj;
+}
+
+void jsonDoc::JsonDoc::setDataObject(const QString& objName, const bool& objValue)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+
+	dataObj[objName] = objValue;
+
+	_rootObj["data"] = dataObj;
+}
+
+QString jsonDoc::JsonDoc::getDataObjectStr(const QString& objName)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+
+	return dataObj[objName].toString();
+}
+
+bool jsonDoc::JsonDoc::getDataObjectBool(const QString& objName)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+
+	return dataObj[objName].toBool();
+}
+
+
+
+//Conn class
+jsonDoc::Conn::Conn() : JsonDoc()
+{
+	_rootObj["action"] = "connection";
+}
+
+void jsonDoc::Conn::setConnId(const QString& connId)
+{
+	JsonDoc::setDataObject("connId", connId);
+}
+
+QString jsonDoc::Conn::getConnId()
+{
+	return JsonDoc::getDataObjectStr("connId");
+}
+
+
+
+//Account class
+jsonDoc::Account::Account() : JsonDoc()
+{
+	_rootObj["action"] = "";
+}
+
+void jsonDoc::Account::setLogin()
+{
+	_rootObj["action"] = "login";
+}
+
+void jsonDoc::Account::setLogout()
+{
+	_rootObj["action"] = "logout";
+}
+
+void jsonDoc::Account::setNewaccount()
+{
+	_rootObj["action"] = "newAccount";
+}
+
+void jsonDoc::Account::setUsername(const QString& username)
+{
+	JsonDoc::setDataObject("username", username);
+}
+
+QString jsonDoc::Account::getUsername()
+{
+	return JsonDoc::getDataObjectStr("username");
+}
+
+void jsonDoc::Account::setPassword(const QString& password)
+{
+	QString passHash = hashData(password);
+	JsonDoc::setDataObject("password", passHash);
+}
+
+QString jsonDoc::Account::getPassword()
+{
+	return JsonDoc::getDataObjectStr("password");
+}
+
+void jsonDoc::Account::setResult(const bool& result)
+{
+	JsonDoc::setDataObject("result", result);
+}
+
+bool jsonDoc::Account::getResult()
+{
+	return JsonDoc::getDataObjectBool("result");
+}
+
+
+
+//Ranking class
+jsonDoc::Ranking::Ranking()
+{
+	_rootObj["action"] = "rankingUpdate";
+}
+
+void jsonDoc::Ranking::setRankning(const QJsonDocument& jsonDoc)
+{
+	QJsonArray rankingArr;
+	QJsonArray jsonArr;
+	int count = 0;
+
+	foreach(const QJsonValue & value, jsonArr)
 	{
-		dataObject["action"] = "join";
+		QJsonObject jsonObj = value.toObject();
+		QJsonObject jsonObjStats = jsonObj["stats"].toObject();
+
+		QJsonObject arrObj;
+
+		arrObj["lp"] = ++count;
+		arrObj["user"] = jsonObj["username"];
+		arrObj["win"] = jsonObjStats["win"];
+		arrObj["lost"] = jsonObjStats["lost"];
+
+		rankingArr.append(arrObj);
 	}
-	else
-	{
-		dataObject["action"] = "leave";
-	}
 
-	return dataObject;
+	_rootObj["data"] = rankingArr;
 }
 
-
-//accountDoc - public
-QJsonDocument jsonDoc::AccountDoc::logIn(const QString& username, const QString& password)
+QJsonDocument jsonDoc::Ranking::getRanking()
 {
-	QJsonObject rootObject;
-	rootObject["action"] = "login";
-	rootObject["data"] = jsonDoc::JsonDoc::createData(username, password);
+	QJsonArray jsonArr = _rootObj["data"].toArray();
 
-	QJsonDocument jsonDoc(rootObject);
-
-	return jsonDoc;
-}
-
-QJsonDocument jsonDoc::AccountDoc::newAccount(const QString& username, const QString& password)
-{
-	QJsonObject rootObject;
-	rootObject["action"] = "newAccount";
-	rootObject["data"] = jsonDoc::JsonDoc::createData(username, password);
-
-	QJsonDocument jsonDoc(rootObject);
-
-	return jsonDoc;
-}
-
-QJsonDocument jsonDoc::AccountDoc::logOut(const QString& username)
-{
-	QJsonObject rootObject;
-	rootObject["action"] = "logout";
-	rootObject["data"] = jsonDoc::JsonDoc::createData(username);
-
-	QJsonDocument jsonDoc(rootObject);
-
-	return jsonDoc;
-}
-
-
-//matchDoc - public
-QJsonDocument jsonDoc::MatchDoc::joinMatchmaking(const QString& username, const bool& status)
-{
-	QJsonObject rootObject;
-	rootObject["action"] = "matchmaking";
-
-	rootObject["data"] = jsonDoc::JsonDoc::createData(username, status);
-
-	QJsonDocument jsonDoc(rootObject);
+	QJsonDocument jsonDoc(jsonArr);
 
 	return jsonDoc;
 }
