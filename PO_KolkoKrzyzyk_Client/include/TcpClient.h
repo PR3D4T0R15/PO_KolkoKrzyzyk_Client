@@ -5,6 +5,8 @@
 #include <QByteArray>
 #include <Qdebug>
 
+#include "include/SettingsFile.h"
+
 class TcpClient : public QObject
 {
 	Q_OBJECT

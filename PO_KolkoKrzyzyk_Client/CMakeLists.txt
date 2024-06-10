@@ -48,6 +48,9 @@ qt_add_executable("${PROJECT_NAME}"
 
     "include/JsonDoc.h" #class for building data
     "src/JsonDoc.cpp"
+
+    "include/SettingsFile.h" #class for config file
+    "src/SettingsFile.cpp"
 )
 
 ## Qt resources ##
@@ -63,3 +66,6 @@ set_target_properties("${PROJECT_NAME}" PROPERTIES
     WIN32_EXECUTABLE ON
     MACOSX_BUNDLE ON
 )
+
+add_custom_target(copy_config ALL COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/cfg/config.ini" "${PROJECT_BINARY_DIR}/config.ini" COMMENT "Copying config file")
+add_dependencies("${PROJECT_NAME}" copy_config)

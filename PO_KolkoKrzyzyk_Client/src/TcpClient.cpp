@@ -24,9 +24,13 @@ bool TcpClient::getState()
 
 void TcpClient::connect()
 {   
-	_socket->connectToHost("192.168.244.131", 2390);		
+	SettingsFile settings;
+	QString ip = settings.getServerAddress();
+	QString port = settings.getServerPort();
 
-	if (_socket->waitForConnected(1))
+	_socket->connectToHost(ip, port.toInt());	
+
+	if (_socket->waitForConnected(10))
 	{
 		QObject::connect(_socket, &QAbstractSocket::readyRead, this, &TcpClient::receiveData);
 		QObject::connect(_socket, &QAbstractSocket::stateChanged, this, &TcpClient::stateChanged);
@@ -41,6 +45,7 @@ void TcpClient::disconnect()
 void TcpClient::sendData(const QByteArray& data)
 {
 	_socket->write(data);
+	_socket->waitForBytesWritten(10);
 }
 
 void TcpClient::receiveData()
