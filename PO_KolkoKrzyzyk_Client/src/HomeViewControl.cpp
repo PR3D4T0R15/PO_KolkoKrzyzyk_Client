@@ -105,6 +105,7 @@ void HomeViewControl::logInButtonClicked()
 
 void HomeViewControl::playButtonClicked()
 {
+	emit changeView("MatchmakingView");
 }
 
 void HomeViewControl::logOutButtonClicked()

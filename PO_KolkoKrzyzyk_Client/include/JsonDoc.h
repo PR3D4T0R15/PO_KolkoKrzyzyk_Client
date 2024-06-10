@@ -34,6 +34,7 @@ namespace jsonDoc
 		void setDataObject(const QString& objName, const QString& objValue);
 		void setDataObject(const QString& objName, const bool& objValue);
 		QString getDataObjectStr(const QString& objName);
+		int getDataObjectInt(const QString& objName);
 		bool getDataObjectBool(const QString& objName);
 
 	protected:
@@ -73,5 +74,25 @@ namespace jsonDoc
 		void setRankning(const QJsonDocument& jsonDoc);
 		QJsonDocument getRanking();
 
+	};
+
+	class Matchmaking : public JsonDoc
+	{
+	public:
+		Matchmaking();
+
+		void setJoin();
+		void setLeave();
+		void setUpdateInfo();
+
+		void setConnId(const QString& connId);
+		QString getConnId();
+
+		void setPlayerName(const QString& username);
+		QString getPlayerName();
+
+		void setPlayersInQueueCount(const int& count);
+		int getPlayersInQueueCount();
+		
 	};
 }

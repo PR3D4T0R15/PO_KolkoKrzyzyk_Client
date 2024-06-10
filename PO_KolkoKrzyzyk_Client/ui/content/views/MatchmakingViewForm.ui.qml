@@ -55,7 +55,7 @@ Item {
 
         Text {
             id: valueQueue
-            text: qsTr("5")
+            text: matchmakingViewControl.playersInQueue
             font.pixelSize: 18
         }
     }

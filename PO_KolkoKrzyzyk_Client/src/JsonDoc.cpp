@@ -97,6 +97,12 @@ QString jsonDoc::JsonDoc::getDataObjectStr(const QString& objName)
 	return dataObj[objName].toString();
 }
 
+int jsonDoc::JsonDoc::getDataObjectInt(const QString& objName)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+	return dataObj[objName].toInt();
+}
+
 bool jsonDoc::JsonDoc::getDataObjectBool(const QString& objName)
 {
 	QJsonObject dataObj = _rootObj["data"].toObject();
@@ -215,4 +221,57 @@ QJsonDocument jsonDoc::Ranking::getRanking()
 	QJsonDocument jsonDoc(jsonArr);
 
 	return jsonDoc;
+}
+
+
+
+//Matchmaking class
+jsonDoc::Matchmaking::Matchmaking() : JsonDoc()
+{
+	_rootObj["action"] = "";
+}
+
+void jsonDoc::Matchmaking::setJoin()
+{
+	_rootObj["action"] = "matchmakingJoin";
+}
+
+void jsonDoc::Matchmaking::setLeave()
+{
+	_rootObj["action"] = "matchmakingLeave";
+}
+
+void jsonDoc::Matchmaking::setUpdateInfo()
+{
+	_rootObj["action"] = "matchmakingUpdate";
+}
+
+void jsonDoc::Matchmaking::setConnId(const QString& connId)
+{
+	JsonDoc::setDataObject("connId", connId);
+}
+
+QString jsonDoc::Matchmaking::getConnId()
+{
+	return JsonDoc::getDataObjectStr("connId");
+}
+
+void jsonDoc::Matchmaking::setPlayerName(const QString& username)
+{
+	JsonDoc::setDataObject("username", username);
+}
+
+QString jsonDoc::Matchmaking::getPlayerName()
+{
+	return JsonDoc::getDataObjectStr("username");
+}
+
+void jsonDoc::Matchmaking::setPlayersInQueueCount(const int& count)
+{
+	JsonDoc::setDataObject("count", count);
+}
+
+int jsonDoc::Matchmaking::getPlayersInQueueCount()
+{
+	return JsonDoc::getDataObjectInt("count");
 }

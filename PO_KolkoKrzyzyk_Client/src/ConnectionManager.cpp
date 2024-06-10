@@ -10,6 +10,9 @@ ConnectionManager::ConnectionManager(QObject *parent): QObject(parent)
 	QObject::connect(this, &ConnectionManager::sendData, _client, &TcpClient::sendData);
 	QObject::connect(_client, &TcpClient::receivedData, this, &ConnectionManager::receivedData);
 
+	_connectionId = "";
+	_clientId = "";
+
 	connect();
 }
 
@@ -22,7 +25,19 @@ ConnectionManager::~ConnectionManager()
 
 void ConnectionManager::sendDataFromQml(const QJsonDocument& jsonDoc)
 {
-	QByteArray data = jsonDoc::JsonDoc::toBytes(jsonDoc);
+	QString action = jsonDoc::JsonDoc::getAction(jsonDoc);
+	QByteArray data;
+
+	data = jsonDoc::JsonDoc::toBytes(jsonDoc);
+
+	if (action.contains("matchmaking"))
+	{
+		jsonDoc::Matchmaking matchmakingJson;
+		matchmakingJson.setJson(jsonDoc);
+		matchmakingJson.setConnId(_connectionId);
+		matchmakingJson.setPlayerName(_clientId);
+		data = jsonDoc::JsonDoc::toBytes(matchmakingJson.getJsonDoc());
+	}
 
 	emit sendData(data);
 }
@@ -41,6 +56,15 @@ void ConnectionManager::receivedData(const QByteArray& data)
 
 		QString connId = conn.getConnId();
 		setConnectionId(connId);
+	}
+	if (action == "login")
+	{
+		jsonDoc::Account accountJson;
+		accountJson.setJson(requestJsonDoc);
+		QString username = accountJson.getUsername();
+
+		setClientId(username);
+
 	}
 
 	emit sendDataToQml(requestJsonDoc);
