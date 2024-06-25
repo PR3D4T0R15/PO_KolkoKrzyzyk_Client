@@ -16,11 +16,23 @@ ConnectionManager::ConnectionManager(QObject *parent): QObject(parent)
 	connect();
 }
 
+bool ConnectionManager::_loginStatus = false;
+
 //destruktor
 ConnectionManager::~ConnectionManager()
 {
 	_client->disconnect();
 	_client->deleteLater();
+}
+
+bool ConnectionManager::getLoginStatus()
+{
+	return _loginStatus;
+}
+
+void ConnectionManager::setLoginStatus(const bool& status)
+{
+	_loginStatus = status;
 }
 
 void ConnectionManager::sendDataFromQml(const QJsonDocument& jsonDoc)
@@ -64,7 +76,6 @@ void ConnectionManager::receivedData(const QByteArray& data)
 		QString username = accountJson.getUsername();
 
 		setClientId(username);
-
 	}
 
 	emit sendDataToQml(requestJsonDoc);

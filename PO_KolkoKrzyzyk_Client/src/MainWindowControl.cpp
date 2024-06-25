@@ -17,6 +17,7 @@ void MainWindowControl::aboutButtonClicked()
 {
 	_aboutWindow = new QQuickView();
 	_aboutWindow->setSource(QUrl(QStringLiteral("qrc:/content/AboutWindow.qml")));
+	//_aboutWindow->setFlags(Qt::Window | Qt::WindowCloseButtonHint);
 	_aboutWindow->show();
 	//TODO memoryleak!
 	QObject::connect(_aboutWindow, &QQuickView::closing, this, [this]() {_aboutWindow->deleteLater(); });

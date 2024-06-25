@@ -17,6 +17,9 @@ public:
 	ConnectionManager(QObject *parent = nullptr);
 	~ConnectionManager();
 
+	static bool getLoginStatus();
+	static void setLoginStatus(const bool& status);
+
 public slots:
 	//odbierz dane z ui
 	void sendDataFromQml(const QJsonDocument& jsonDoc);
@@ -53,4 +56,5 @@ private:
 	QString _clientId;
 
 	bool _connectionStatus;
+	static bool _loginStatus;
 };

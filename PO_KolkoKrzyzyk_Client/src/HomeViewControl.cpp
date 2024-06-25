@@ -1,5 +1,4 @@
 #include "include/HomeViewControl.h"
-
 #include "include/JsonDoc.h"
 //konstruktor
 HomeViewControl::HomeViewControl(QObject *parent): QObject(parent)
@@ -143,10 +142,12 @@ void HomeViewControl::receiveData(const QJsonDocument& data)
 		if (accountJson.getResult())
 		{
 			emit changeState("home");
+			ConnectionManager::setLoginStatus(true);
 		}
 		else
 		{
 			setLoginInfoString(QString::fromUtf8("Nieprawidłowa nazwa użytkownika lub hasło"));
+			ConnectionManager::setLoginStatus(false);
 		}
 		
 	}
@@ -158,4 +159,16 @@ void HomeViewControl::queryPlayerRanking()
 {
 	jsonDoc::Ranking ranking;
 	emit sendData(ranking.getJsonDoc());
+}
+
+void HomeViewControl::windowReady()
+{
+	if (ConnectionManager::getLoginStatus())
+	{
+		emit changeState("home");
+	}
+	else
+	{
+		emit changeState("loginAccount");
+	}
 }

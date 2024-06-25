@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QJsonArray>
+#include "include/ConnectionManager.h"
 
 class HomeViewControl : public QObject
 {
@@ -41,6 +42,9 @@ public slots:
 
 	//wyslij zapytanie o ranking 
 	void queryPlayerRanking();
+
+	//zaladowane okno
+	void windowReady();
 
 private slots:
 

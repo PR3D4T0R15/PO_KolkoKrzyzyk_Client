@@ -12,11 +12,12 @@ HomeViewForm {
 			playerListModel.clear();
 			playerListModel.append(homeViewControl.playerRanking);
 		}
-	}
 
-	Component.onCompleted: {
-        connManager.sendDataToQml.connect(homeViewControl.receiveData);
-		homeViewControl.sendData.connect(connManager.sendDataFromQml);
-		homeViewControl.queryPlayerRanking();
-    }
+		Component.onCompleted: {
+			connManager.sendDataToQml.connect(homeViewControl.receiveData);
+			homeViewControl.sendData.connect(connManager.sendDataFromQml);
+			homeViewControl.windowReady();
+			homeViewControl.queryPlayerRanking();
+		}
+	}
 }
