@@ -3,6 +3,9 @@
 #include <QObject>
 #include <QTimer>
 #include <QDebug>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include "include/JsonDoc.h"
 
 class GameViewControl : public QObject
 {
@@ -98,6 +101,12 @@ signals:
 	void countdownChanged();
 
 private:
+	void setGameField(const QJsonArray& gameField);
+	QString setGameControlState(const QString& state);
+
+	void updateGameFieldPawn(int row, int column);
+
+private:
 	//Q_PROPERTY
 	QString _buttonA1state;
 	QString _buttonA2state;
@@ -114,4 +123,7 @@ private:
 
 	QTimer* _counterTimer;
 	int _counter;
+
+	QString _playerPawn;
+	QJsonArray _gameField;
 };

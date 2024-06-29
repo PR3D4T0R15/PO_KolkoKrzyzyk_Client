@@ -18,6 +18,7 @@ namespace jsonDoc
 		JsonDoc();
 		static QString getAction(const QJsonDocument& jsonDoc);
 		static QJsonObject getData(const QJsonDocument& jsonDoc);
+		QJsonObject getData();
 
 		static QByteArray toBytes(const QJsonDocument& jsonDoc);
 		static QJsonDocument toJson(const QByteArray& jsonByte);
@@ -33,9 +34,15 @@ namespace jsonDoc
 	protected:
 		void setDataObject(const QString& objName, const QString& objValue);
 		void setDataObject(const QString& objName, const bool& objValue);
+		void setDataObject(const QString& objName, const int& objValue);
+		void setDataObject(const QString& objName, const QJsonArray& objValue);
+		void setDataObject(const QString& objName, const QJsonObject& objValue);
+
 		QString getDataObjectStr(const QString& objName);
 		int getDataObjectInt(const QString& objName);
 		bool getDataObjectBool(const QString& objName);
+		QJsonArray getDataObjectArray(const QString& objName);
+		QJsonObject getDataObjectJsonObj(const QString& objName);
 
 	protected:
 		QJsonObject _rootObj;
@@ -105,7 +112,7 @@ namespace jsonDoc
 		void setGameField(const QJsonArray& gameField);
 
 		QString getStartingPawn();
-		QString getPlayerPawn(const QString& player);
+		QString getPlayerPawn(const QString& playerName);
 		int getRoundCount();
 
 	private:

@@ -33,6 +33,11 @@ QJsonObject jsonDoc::JsonDoc::getData(const QJsonDocument& jsonDoc)
 	return array;
 }
 
+QJsonObject jsonDoc::JsonDoc::getData()
+{
+	return _rootObj["data"].toObject();
+}
+
 QByteArray jsonDoc::JsonDoc::toBytes(const QJsonDocument& jsonDoc)
 {
 	return jsonDoc.toJson(QJsonDocument::Compact);
@@ -90,6 +95,33 @@ void jsonDoc::JsonDoc::setDataObject(const QString& objName, const bool& objValu
 	_rootObj["data"] = dataObj;
 }
 
+void jsonDoc::JsonDoc::setDataObject(const QString& objName, const int& objValue)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+
+	dataObj[objName] = objValue;
+
+	_rootObj["data"] = dataObj;
+}
+
+void jsonDoc::JsonDoc::setDataObject(const QString& objName, const QJsonArray& objValue)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+
+	dataObj[objName] = objValue;
+
+	_rootObj["data"] = dataObj;
+}
+
+void jsonDoc::JsonDoc::setDataObject(const QString& objName, const QJsonObject& objValue)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+
+	dataObj[objName] = objValue;
+
+	_rootObj["data"] = dataObj;
+}
+
 QString jsonDoc::JsonDoc::getDataObjectStr(const QString& objName)
 {
 	QJsonObject dataObj = _rootObj["data"].toObject();
@@ -110,6 +142,19 @@ bool jsonDoc::JsonDoc::getDataObjectBool(const QString& objName)
 	return dataObj[objName].toBool();
 }
 
+QJsonArray jsonDoc::JsonDoc::getDataObjectArray(const QString& objName)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+
+	return dataObj[objName].toArray();
+}
+
+QJsonObject jsonDoc::JsonDoc::getDataObjectJsonObj(const QString& objName)
+{
+	QJsonObject dataObj = _rootObj["data"].toObject();
+
+	return dataObj[objName].toObject();
+}
 
 
 //Conn class
@@ -274,4 +319,48 @@ void jsonDoc::Matchmaking::setPlayersInQueueCount(const int& count)
 int jsonDoc::Matchmaking::getPlayersInQueueCount()
 {
 	return JsonDoc::getDataObjectInt("count");
+}
+
+
+
+//Game class
+jsonDoc::Game::Game() : JsonDoc()
+{
+	_rootObj["action"] = "game";
+}
+
+QJsonArray jsonDoc::Game::getGameField()
+{
+	return JsonDoc::getDataObjectArray("gameField");
+}
+
+void jsonDoc::Game::setGameField(const QJsonArray& gameField)
+{
+	JsonDoc::setDataObject("gameField", gameField);
+}
+
+QString jsonDoc::Game::getStartingPawn()
+{
+	return JsonDoc::getDataObjectStr("starting");
+}
+
+QString jsonDoc::Game::getPlayerPawn(const QString& playerName)
+{
+	QJsonArray players = JsonDoc::getDataObjectArray("players");
+
+	for (const auto& player : players)
+	{
+		QJsonObject playerObj = player.toObject();
+
+		if (playerObj["playerName"].toString() == playerName)
+		{
+			return playerObj["pawn"].toString();
+		}
+	}
+	return nullptr;
+}
+
+int jsonDoc::Game::getRoundCount()
+{
+	return JsonDoc::getDataObjectInt("round");
 }

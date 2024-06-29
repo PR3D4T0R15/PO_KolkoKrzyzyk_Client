@@ -1,13 +1,13 @@
 #include "include/GameViewControl.h"
 
-#include <QJsonDocument>
-
 GameViewControl::GameViewControl()
 {
 	_counterTimer = new QTimer();
 	_counterTimer->setInterval(1000);
 	_counterTimer->stop();
 	QObject::connect(_counterTimer, &QTimer::timeout, this, &GameViewControl::timerShot);
+
+	_playerPawn = "cross";
 }
 
 GameViewControl::~GameViewControl()
@@ -156,47 +156,55 @@ QString GameViewControl::getCountdown()
 void GameViewControl::buttonA1Clicked()
 {
 	qDebug() << "Button A1";
+	updateGameFieldPawn(0,0);
 }
 
 void GameViewControl::buttonA2Clicked()
 {
 	qDebug() << "Button A2";
-	
+	updateGameFieldPawn(0, 1);
 }
 
 void GameViewControl::buttonA3Clicked()
 {
 	qDebug() << "Button A3";
+	updateGameFieldPawn(0, 2);
 }
 
 void GameViewControl::buttonB1Clicked()
 {
 	qDebug() << "Button B1";
+	updateGameFieldPawn(1, 0);
 }
 
 void GameViewControl::buttonB2Clicked()
 {
 	qDebug() << "Button B2";
+	updateGameFieldPawn(1, 1);
 }
 
 void GameViewControl::buttonB3Clicked()
 {
 	qDebug() << "Button B3";
+	updateGameFieldPawn(1, 2);
 }
 
 void GameViewControl::buttonC1Clicked()
 {
 	qDebug() << "Button C1";
+	updateGameFieldPawn(2, 0);
 }
 
 void GameViewControl::buttonC2Clicked()
 {
 	qDebug() << "Button C2";
+	updateGameFieldPawn(2, 1);
 }
 
 void GameViewControl::buttonC3Clicked()
 {
 	qDebug() << "Button C3";
+	updateGameFieldPawn(2, 2);
 }
 
 void GameViewControl::gameLeaveButton()
@@ -210,7 +218,10 @@ void GameViewControl::uiReady()
 
 void GameViewControl::receiveData(const QJsonDocument& data)
 {
-	
+	jsonDoc::Game gameJson;
+	gameJson.setJson(data);
+
+	QJsonArray gameField = gameJson.getGameField();
 }
 
 void GameViewControl::timerStart()
@@ -235,4 +246,55 @@ void GameViewControl::timerShot()
 		emit timerStart();
 	}
 	setCountdown(QString::number(_counter));
+}
+
+void GameViewControl::setGameField(const QJsonArray& gameField)
+{
+	setButtonA1(setGameControlState(gameField[0].toArray()[0].toString()));
+	setButtonA2(setGameControlState(gameField[0].toArray()[1].toString()));
+	setButtonA3(setGameControlState(gameField[0].toArray()[2].toString()));
+	setButtonB1(setGameControlState(gameField[1].toArray()[0].toString()));
+	setButtonB2(setGameControlState(gameField[1].toArray()[1].toString()));
+	setButtonB3(setGameControlState(gameField[1].toArray()[2].toString()));
+	setButtonC1(setGameControlState(gameField[2].toArray()[0].toString()));
+	setButtonC2(setGameControlState(gameField[2].toArray()[1].toString()));
+	setButtonC3(setGameControlState(gameField[2].toArray()[2].toString()));
+}
+
+QString GameViewControl::setGameControlState(const QString& state)
+{
+	//state n x o
+	if (state == "n")
+	{
+		return _playerPawn + "_notSet";
+	}
+	if (state == "x")
+	{
+		return "cross_set";
+	}
+	if (state == "o")
+	{
+		return "circle_set";
+	}
+
+	return "default";
+}
+
+void GameViewControl::updateGameFieldPawn(int row, int column)
+{
+	QJsonArray rowArray = _gameField[row].toArray();
+
+	if (_playerPawn == "cross")
+	{
+		rowArray[column] = "x";
+	}
+	else
+	{
+		rowArray[column] = "o";
+	}
+
+	_gameField[row] = rowArray;
+
+	QJsonDocument jsonDoc(rowArray);
+	qDebug() << jsonDoc.toJson(QJsonDocument::Compact);
 }
