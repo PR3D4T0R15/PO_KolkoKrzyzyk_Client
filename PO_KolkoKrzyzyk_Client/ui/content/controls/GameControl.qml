@@ -5,6 +5,10 @@ Item {
     width: 170
     height: 160
 
+    signal clickedButton();
+
+    state: "circle_notSet"
+
     property string imagePath: ""
     property string controlLocation: "A1"
 
@@ -30,7 +34,7 @@ Item {
             image.source = ""
         }
         onClicked: {
-
+            gameControl.clickedButton();
         }
     }
 
@@ -41,12 +45,20 @@ Item {
                 target: gameControl
                 imagePath: "../images/o.png"
             }
+            PropertyChanges {
+                target: image
+                opacity: 1.0
+            }
         },
         State {
             name: "cross_notSet"
             PropertyChanges {
                 target: gameControl
                 imagePath: "../images/x.png"
+            }
+            PropertyChanges {
+                target: image
+                opacity: 1.0
             }
         },
         State {
@@ -59,6 +71,10 @@ Item {
                 target: image
                 source: "../images/o.png"
             }
+            PropertyChanges {
+                target: image
+                opacity: 1.0
+            }
         },
         State {
             name: "cross_set"
@@ -69,6 +85,10 @@ Item {
             PropertyChanges {
                 target: image
                 source: "../images/x.png"
+            }
+            PropertyChanges {
+                target: image
+                opacity: 1.0
             }
         },
         State {
@@ -81,6 +101,10 @@ Item {
                 target: image
                 source: "../images/o.png"
             }
+            PropertyChanges {
+                target: image
+                opacity: 1.0
+            }
         },
         State {
             name: "cross_win"
@@ -91,6 +115,10 @@ Item {
             PropertyChanges {
                 target: image
                 source: "../images/x.png"
+            }
+            PropertyChanges {
+                target: image
+                opacity: 1.0
             }
         },
         State {

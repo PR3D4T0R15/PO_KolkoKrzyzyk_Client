@@ -40,6 +40,7 @@ signals:
 
 	//wyslij dane do ui
 	void sendDataToQml(const QJsonDocument& data);
+	void changeView(const QString& view);
 
 	void socketConnStatus(const bool& status);
 

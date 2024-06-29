@@ -77,6 +77,10 @@ void ConnectionManager::receivedData(const QByteArray& data)
 
 		setClientId(username);
 	}
+	if (action == "game")
+	{
+		emit changeView("GameView");
+	}
 
 	emit sendDataToQml(requestJsonDoc);
 }

@@ -95,4 +95,20 @@ namespace jsonDoc
 		int getPlayersInQueueCount();
 		
 	};
+
+	class Game : public JsonDoc
+	{
+	public:
+		Game();
+
+		QJsonArray getGameField();
+		void setGameField(const QJsonArray& gameField);
+
+		QString getStartingPawn();
+		QString getPlayerPawn(const QString& player);
+		int getRoundCount();
+
+	private:
+		
+	};
 }

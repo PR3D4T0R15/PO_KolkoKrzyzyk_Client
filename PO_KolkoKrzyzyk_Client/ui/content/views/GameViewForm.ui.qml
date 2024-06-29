@@ -17,8 +17,6 @@ Item {
     height: 720
 
     anchors.fill: parent
-    property alias timeLeftValue: timeLeftValue
-    property alias gameInfoPopup: gameInfoPopup
     property alias gameControlC3: gameControlC3
     property alias gameControlB3: gameControlB3
     property alias gameControlA3: gameControlA3
@@ -28,6 +26,11 @@ Item {
     property alias gameControlC1: gameControlC1
     property alias gameControlB1: gameControlB1
     property alias gameControlA1: gameControlA1
+
+    property alias timeLeftValue: timeLeftValue
+    property alias roundTitle: roundTitle
+    property alias roundImage: roundImage
+
     property alias gameLeaveButton: gameLeaveButton
 
     GridLayout {
@@ -198,29 +201,19 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Text {
-                    id: text1
+                    id: roundTitle
                     width: 200
-                    text: qsTr("")
+                    text: qsTr("Ruch \nprzeciwnika!")
                     font.pixelSize: 32
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     font.weight: Font.DemiBold
                     font.bold: false
                 }
-
-                Text {
-                    id: text2
-                    width: 200
-                    text: qsTr("")
-                    font.pixelSize: 32
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    font.weight: Font.DemiBold
-                }
             }
 
             Image {
-                id: image
+                id: roundImage
                 x: 135
                 width: 70
                 height: 70

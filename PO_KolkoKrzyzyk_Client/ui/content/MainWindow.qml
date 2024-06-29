@@ -107,6 +107,7 @@ Window {
 		anchors.top: parent.top
 		anchors.topMargin: 20
 		initialItem: "views/StartView.qml"
+		//initialItem: "views/GameView.qml"
 	}
 	GameInfoPopup {
 		id: gameInfoPopup
@@ -120,5 +121,9 @@ Window {
 	}
 	SoundsControls {
 		id: soundBackground
+	}
+
+	Component.onCompleted: {
+		connManager.changeView.connect(windowControl.changeView);
 	}
 }

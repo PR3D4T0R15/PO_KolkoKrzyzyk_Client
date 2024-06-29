@@ -46,6 +46,9 @@ qt_add_executable("${PROJECT_NAME}"
     "include/ConnectionManager.h" #class for sending and receiving data
     "src/ConnectionManager.cpp"
 
+    "include/GameViewControl.h" #class exposed to QML
+    "src/GameViewControl.cpp"
+
     "include/JsonDoc.h" #class for building data
     "src/JsonDoc.cpp"
 
