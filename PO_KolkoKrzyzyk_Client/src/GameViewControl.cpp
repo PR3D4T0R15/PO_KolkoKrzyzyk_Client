@@ -211,6 +211,7 @@ void GameViewControl::buttonC3Clicked()
 void GameViewControl::gameLeaveButton()
 {
 	qDebug() << "Exit";
+	changeView("HomeView");
 }
 
 void GameViewControl::uiReady()
