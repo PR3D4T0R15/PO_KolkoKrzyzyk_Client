@@ -7,7 +7,9 @@ this file manually, you might introduce QML code that is not supported by Qt Des
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
 import QtQuick
+import QtMultimedia
 import "../controls"
+import "../sounds"
 
 Item {
     id: endGameView
@@ -22,6 +24,7 @@ Item {
     property alias playAgainButton: playAgainButton
     property alias rankingPlace: rankingPlace
     property alias endGameView: endGameView
+    property alias endSound: endSound
 
     Rectangle {
         id: rectangle
@@ -90,6 +93,12 @@ Item {
             font.bold: true
         }
     }
+
+    SoundEffect {
+        id: endSound
+    }
+
+
     states: [
         State {
             name: "win"
@@ -97,6 +106,11 @@ Item {
                 target: loader
                 source: "WinPanel.ui.qml"
             }
+            PropertyChanges {
+                target: endSound
+                source: "/content/sounds/win.wav"
+            }
+
         },
         State {
             name: "lost"
@@ -104,12 +118,20 @@ Item {
                 target: loader
                 source: "FailPanel.ui.qml"
             }
+            PropertyChanges {
+                target: endSound
+                source: "/content/sounds/defeat.wav"
+            }
         },
         State {
             name: "draw"
             PropertyChanges {
                 target: loader
                 source: "DrawPanel.ui.qml"
+            }
+            PropertyChanges {
+                target: endSound
+                source: "/content/sounds/defeat.wav"
             }
         }
     ]

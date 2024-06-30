@@ -9,6 +9,7 @@ EndGameViewForm {
         onPanelChanged: {
             endGameView.state = endGameViewControl.panel;
             console.log(endGameViewControl.panel);
+            endSound.play();
         }
     }
 
