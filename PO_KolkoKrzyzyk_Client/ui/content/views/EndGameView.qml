@@ -6,7 +6,10 @@ EndGameViewForm {
     
     EndGameViewControl {
         id: endGameViewControl
-        onChangePanel: function(panel) { endGameView.state = panel }
+        onPanelChanged: {
+            endGameView.state = endGameViewControl.panel;
+            console.log(endGameViewControl.panel);
+        }
     }
 
 
@@ -30,5 +33,6 @@ EndGameViewForm {
 
     Component.onCompleted: {
         endGameViewControl.changeView.connect(mainWindow.windowControl.changeView);
+        endGameViewControl.windowReady();
     }
 }

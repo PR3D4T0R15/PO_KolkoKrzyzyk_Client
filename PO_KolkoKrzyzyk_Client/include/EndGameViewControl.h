@@ -5,6 +5,7 @@
 class EndGameViewControl : public QObject
 {
 	Q_OBJECT
+	Q_PROPERTY(QString panel READ getPanel WRITE setPanel NOTIFY panelChanged)
 
 public:
 	EndGameViewControl();
@@ -12,18 +13,23 @@ public:
 
 	static void setStatus(const QString& status);
 
+	QString getPanel();
+	void setPanel(const QString& panel);
+
 public slots:
 	void playAgainButtonClicked();
 	void goToMenuButtonClicked();
+	void windowReady();
 
 private slots:
 
 signals:
-	void changePanel(const QString& panel);
+	void panelChanged();
 	void changeView(QString view);
 
 private:
 
 private:
 	static QString _status;
+	QString _panel;
 };

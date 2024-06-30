@@ -21,6 +21,7 @@ Item {
     property alias goToMenuButton: goToMenuButton
     property alias playAgainButton: playAgainButton
     property alias rankingPlace: rankingPlace
+    property alias endGameView: endGameView
 
     Rectangle {
         id: rectangle

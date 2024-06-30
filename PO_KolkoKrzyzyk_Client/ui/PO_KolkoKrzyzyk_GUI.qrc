@@ -72,5 +72,8 @@
         <file>content/scripts/CheckPass.js</file>
         <file>content/views/HomeView.qml</file>
         <file>content/views/HomeViewForm.ui.qml</file>
+        <file>content/images/draw.gif</file>
+        <file>content/images/gameover.gif</file>
+        <file>content/images/win.gif</file>
     </qresource>
 </RCC>
