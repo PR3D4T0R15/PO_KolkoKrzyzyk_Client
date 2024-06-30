@@ -243,11 +243,11 @@ void GameViewControl::receiveData(const QJsonDocument& data)
 
 	if (action == "gameInit")
 	{
-		_gameField = _gameData.getGameField();
 		_playerPawn = _gameData.getPlayerPawn();
-		_playerTurn = _gameData.checkGameTurn();
 	}
 
+	_gameField = _gameData.getGameField();
+	_playerTurn = _gameData.checkGameTurn();
 	timerStart();
 	setGameInfo();
 	setGameField(_gameData.getGameField());
