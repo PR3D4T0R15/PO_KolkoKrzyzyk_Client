@@ -13,14 +13,14 @@ EndGameViewForm {
     goToMenuButton {
         onClicked: {
             sound.buttonClickSound.play()
-            endGameViewForm.goToMenuButtonClicked();
+            endGameViewControl.goToMenuButtonClicked();
         }
     }
 
     playAgainButton {
         onClicked: {
             sound.buttonClickSound.play()
-            endGameViewForm.playAgainButtonClicked();
+            endGameViewControl.playAgainButtonClicked();
         }
     }
 
@@ -29,6 +29,6 @@ EndGameViewForm {
     }
 
     Component.onCompleted: {
-        endGameViewForm.changeView.connect(mainWindow.windowControl.changeView);
+        endGameViewControl.changeView.connect(mainWindow.windowControl.changeView);
     }
 }
