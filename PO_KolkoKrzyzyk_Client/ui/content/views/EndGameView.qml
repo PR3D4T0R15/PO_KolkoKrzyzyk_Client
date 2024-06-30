@@ -3,8 +3,9 @@ import "../sounds"
 import backend.EndGameViewControl
 
 EndGameViewForm {
-    id: endGameViewForm
+    
     EndGameViewControl {
+        id: endGameViewControl
         onChangePanel: function(panel) { endGameView.state = panel }
     }
 
