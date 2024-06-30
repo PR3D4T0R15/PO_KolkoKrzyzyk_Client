@@ -248,6 +248,18 @@ void GameViewControl::receiveData(const QJsonDocument& data)
 
 	if (!_gameData.getWinner().isEmpty())
 	{
+		QString winner = _gameData.getWinner();
+
+		if (winner == "n")
+		{
+			EndGameViewControl::setStatus("draw");
+		}
+		if (winner == _playerPawn)
+		{
+			EndGameViewControl::setStatus("win");
+		}
+		EndGameViewControl::setStatus("lost");
+
 		changeView("EndGameView");
 	}
 

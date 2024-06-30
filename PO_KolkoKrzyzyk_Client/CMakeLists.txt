@@ -54,6 +54,9 @@ qt_add_executable("${PROJECT_NAME}"
 
     "include/SettingsFile.h" #class for config file
     "src/SettingsFile.cpp"
+
+    "include/EndGameViewControl.h" #class for config file
+    "src/EndGameViewControl.cpp"
 )
 
 ## Qt resources ##

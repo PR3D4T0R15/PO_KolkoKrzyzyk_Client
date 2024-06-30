@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include "include/JsonDoc.h"
 #include "include/ConnectionManager.h"
+#include "include/EndGameViewControl.h"
 
 class GameViewControl : public QObject
 {

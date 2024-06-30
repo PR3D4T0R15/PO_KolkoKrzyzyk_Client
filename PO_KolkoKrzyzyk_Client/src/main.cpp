@@ -13,6 +13,7 @@
 #include "include/HomeViewControl.h"
 #include "include/MatchmakingViewControl.h"
 #include "include/GameViewControl.h"
+#include "include/EndGameViewControl.h"
 
 
 int main(int argc, char* argv[])
@@ -35,6 +36,7 @@ int main(int argc, char* argv[])
 	qmlRegisterType<HomeViewControl>("backend.HomeViewControl", 1, 0, "HomeViewControl");
 	qmlRegisterType<MatchmakingViewControl>("backend.MatchmakingViewControl", 1, 0, "MatchmakingViewControl");
 	qmlRegisterType<GameViewControl>("backend.GameViewControl", 1, 0, "GameViewControl");
+	qmlRegisterType<EndGameViewControl>("backend.EndGameViewControl", 1, 0, "EndGameViewControl");
 
 	QQmlContext* rootContext = engine.rootContext();
 	rootContext->setContextProperty("connManager", connManager);
