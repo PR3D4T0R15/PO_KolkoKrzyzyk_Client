@@ -103,12 +103,16 @@ signals:
 
 	void changeView(QString view);
 
+	//wyslij dane do sewera
+	void sendData(const QJsonDocument& data);
+
 private:
 	void setGameField(const QJsonArray& gameField);
 	QString setGameControlState(const QString& state);
 	void setGameInfo();
 
 	void updateGameFieldPawn(int row, int column);
+	void sendReply();
 
 private:
 	//Q_PROPERTY
@@ -131,4 +135,5 @@ private:
 	QString _playerPawn;
 	QJsonArray _gameField;
 	bool _playerTurn;
+	jsonDoc::Game _gameData;
 };

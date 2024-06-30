@@ -17,6 +17,7 @@ namespace jsonDoc
 	public:
 		JsonDoc();
 		static QString getAction(const QJsonDocument& jsonDoc);
+		void setAction(const QString& action);
 		static QJsonObject getData(const QJsonDocument& jsonDoc);
 		QJsonObject getData();
 

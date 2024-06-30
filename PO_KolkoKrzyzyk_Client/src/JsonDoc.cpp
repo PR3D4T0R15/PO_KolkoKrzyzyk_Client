@@ -20,6 +20,11 @@ QString jsonDoc::JsonDoc::getAction(const QJsonDocument& jsonDoc)
 	return action;
 }
 
+void jsonDoc::JsonDoc::setAction(const QString& action)
+{
+	_rootObj["action"] = action;
+}
+
 QJsonObject jsonDoc::JsonDoc::getData(const QJsonDocument& jsonDoc)
 {
 	QJsonObject array;

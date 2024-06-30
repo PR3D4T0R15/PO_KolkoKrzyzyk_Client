@@ -108,6 +108,7 @@ GameViewForm {
 
     Component.onCompleted: {
 		connManager.sendDataToQml.connect(gameViewControl.receiveData);
+        gameViewControl.sendData.connect(connManager.sendDataFromQml);
         gameViewControl.changeView.connect(mainWindow.windowControl.changeView);
 	}
 }

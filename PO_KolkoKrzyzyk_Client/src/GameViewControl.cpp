@@ -158,54 +158,72 @@ void GameViewControl::buttonA1Clicked()
 {
 	qDebug() << "Button A1";
 	updateGameFieldPawn(0,0);
+	setButtonA1(setGameControlState(_playerPawn));
+	sendReply();
 }
 
 void GameViewControl::buttonA2Clicked()
 {
 	qDebug() << "Button A2";
 	updateGameFieldPawn(0, 1);
+	setButtonA2(setGameControlState(_playerPawn));
+	sendReply();
 }
 
 void GameViewControl::buttonA3Clicked()
 {
 	qDebug() << "Button A3";
 	updateGameFieldPawn(0, 2);
+	setButtonA3(setGameControlState(_playerPawn));
+	sendReply();
 }
 
 void GameViewControl::buttonB1Clicked()
 {
 	qDebug() << "Button B1";
 	updateGameFieldPawn(1, 0);
+	setButtonB1(setGameControlState(_playerPawn));
+	sendReply();
 }
 
 void GameViewControl::buttonB2Clicked()
 {
 	qDebug() << "Button B2";
 	updateGameFieldPawn(1, 1);
+	setButtonB2(setGameControlState(_playerPawn));
+	sendReply();
 }
 
 void GameViewControl::buttonB3Clicked()
 {
 	qDebug() << "Button B3";
 	updateGameFieldPawn(1, 2);
+	setButtonB3(setGameControlState(_playerPawn));
+	sendReply();
 }
 
 void GameViewControl::buttonC1Clicked()
 {
 	qDebug() << "Button C1";
 	updateGameFieldPawn(2, 0);
+	setButtonC1(setGameControlState(_playerPawn));
+	sendReply();
 }
 
 void GameViewControl::buttonC2Clicked()
 {
 	qDebug() << "Button C2";
 	updateGameFieldPawn(2, 1);
+	setButtonC2(setGameControlState(_playerPawn));
+	sendReply();
 }
 
 void GameViewControl::buttonC3Clicked()
 {
 	qDebug() << "Button C3";
 	updateGameFieldPawn(2, 2);
+	setButtonC3(setGameControlState(_playerPawn));
+	sendReply();
 }
 
 void GameViewControl::gameLeaveButton()
@@ -221,19 +239,18 @@ void GameViewControl::uiReady()
 void GameViewControl::receiveData(const QJsonDocument& data)
 {
 	QString action = jsonDoc::JsonDoc::getAction(data);
-	jsonDoc::Game gameJson;
-	gameJson.setJson(data);
+	_gameData.setJson(data);
 
 	if (action == "gameInit")
 	{
-		_gameField = gameJson.getGameField();
-		_playerPawn = gameJson.getPlayerPawn();
-		_playerTurn = gameJson.checkGameTurn();
+		_gameField = _gameData.getGameField();
+		_playerPawn = _gameData.getPlayerPawn();
+		_playerTurn = _gameData.checkGameTurn();
 	}
 
 	timerStart();
 	setGameInfo();
-	setGameField(gameJson.getGameField());
+	setGameField(_gameData.getGameField());
 }
 
 void GameViewControl::timerStart()
@@ -356,4 +373,11 @@ void GameViewControl::updateGameFieldPawn(int row, int column)
 
 	QJsonDocument jsonDoc(_gameField);
 	qDebug() << jsonDoc.toJson(QJsonDocument::Compact);
+}
+
+void GameViewControl::sendReply()
+{
+	_gameData.setGameField(_gameField);
+	_gameData.setAction("game");
+	sendData(_gameData.getJsonDoc());
 }
