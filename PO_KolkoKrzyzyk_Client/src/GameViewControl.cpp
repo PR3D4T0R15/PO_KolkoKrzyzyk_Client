@@ -262,6 +262,11 @@ void GameViewControl::timerShot()
 
 void GameViewControl::setGameField(const QJsonArray& gameField)
 {
+	if (gameField.isEmpty())
+	{
+		return;
+	}
+
 	setButtonA1(setGameControlState(gameField[0].toArray()[0].toString()));
 	setButtonA2(setGameControlState(gameField[0].toArray()[1].toString()));
 	setButtonA3(setGameControlState(gameField[0].toArray()[2].toString()));
