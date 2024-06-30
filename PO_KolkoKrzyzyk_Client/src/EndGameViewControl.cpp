@@ -11,7 +11,7 @@ EndGameViewControl::~EndGameViewControl()
 QString EndGameViewControl::_status = "draw";
 
 
-QString EndGameViewControl::setStatus(const QString& status)
+void EndGameViewControl::setStatus(const QString& status)
 {
 	_status = status;
 }

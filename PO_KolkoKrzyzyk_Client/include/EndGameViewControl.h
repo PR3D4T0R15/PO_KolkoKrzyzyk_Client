@@ -10,7 +10,7 @@ public:
 	EndGameViewControl();
 	~EndGameViewControl();
 
-	static QString setStatus(const QString& status);
+	static void setStatus(const QString& status);
 
 public slots:
 	void playAgainButtonClicked();
