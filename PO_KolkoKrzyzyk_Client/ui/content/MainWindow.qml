@@ -106,8 +106,8 @@ Window {
 		anchors.rightMargin: 20
 		anchors.top: parent.top
 		anchors.topMargin: 20
-		//initialItem: "views/StartView.qml"
-		initialItem: "views/GameView.qml"
+		initialItem: "views/StartView.qml"
+		//initialItem: "views/GameView.qml"
 	}
 	GameInfoPopup {
 		id: gameInfoPopup

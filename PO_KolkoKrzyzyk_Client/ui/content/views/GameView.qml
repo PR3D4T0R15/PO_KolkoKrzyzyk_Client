@@ -35,7 +35,7 @@ GameViewForm {
         }
 
         onRoundTitleChanged: {
-            roundTitle.text = gameViewControl.roundTitle
+            roundText.text = gameViewControl.roundTitle
         }
         onRoundIcoChanged: {
             roundImage.source = gameViewControl.roundIco
@@ -108,6 +108,7 @@ GameViewForm {
 
     Component.onCompleted: {
 		connManager.sendDataToQml.connect(gameViewControl.receiveData);
+        connManager.changeView.connect(mainWindow.windowControl.changeView);
 	}
 }
 

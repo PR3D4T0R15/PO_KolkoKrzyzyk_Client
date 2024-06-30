@@ -40,6 +40,21 @@ Item {
 
     states: [
         State {
+            name: "wait"
+            PropertyChanges {
+                target: gameControl
+                imagePath: ""
+            }
+            PropertyChanges {
+                target: image
+                opacity: 0.0
+            }
+            PropertyChanges {
+                target: mouseArea
+                visible: false
+            }
+        },
+        State {
             name: "circle_notSet"
             PropertyChanges {
                 target: gameControl

@@ -339,28 +339,17 @@ void jsonDoc::Game::setGameField(const QJsonArray& gameField)
 	JsonDoc::setDataObject("gameField", gameField);
 }
 
-QString jsonDoc::Game::getStartingPawn()
-{
-	return JsonDoc::getDataObjectStr("starting");
-}
-
-QString jsonDoc::Game::getPlayerPawn(const QString& playerName)
-{
-	QJsonArray players = JsonDoc::getDataObjectArray("players");
-
-	for (const auto& player : players)
-	{
-		QJsonObject playerObj = player.toObject();
-
-		if (playerObj["playerName"].toString() == playerName)
-		{
-			return playerObj["pawn"].toString();
-		}
-	}
-	return nullptr;
-}
-
 int jsonDoc::Game::getRoundCount()
 {
 	return JsonDoc::getDataObjectInt("round");
+}
+
+bool jsonDoc::Game::checkGameTurn()
+{
+	return JsonDoc::getDataObjectBool("gameTurn");
+}
+
+QString jsonDoc::Game::getPlayerPawn()
+{
+	return JsonDoc::getDataObjectStr("pawn");
 }

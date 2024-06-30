@@ -7,7 +7,8 @@ GameViewControl::GameViewControl()
 	_counterTimer->stop();
 	QObject::connect(_counterTimer, &QTimer::timeout, this, &GameViewControl::timerShot);
 
-	_playerPawn = "cross";
+	_playerPawn = "";
+	_counter = 15;
 }
 
 GameViewControl::~GameViewControl()
@@ -218,10 +219,20 @@ void GameViewControl::uiReady()
 
 void GameViewControl::receiveData(const QJsonDocument& data)
 {
+	QString action = jsonDoc::JsonDoc::getAction(data);
 	jsonDoc::Game gameJson;
 	gameJson.setJson(data);
 
-	QJsonArray gameField = gameJson.getGameField();
+	if (action == "gameInit")
+	{
+		_gameField = gameJson.getGameField();
+		_playerPawn = gameJson.getPlayerPawn();
+		_playerTurn = gameJson.checkGameTurn();
+	}
+
+	timerStart();
+	setGameInfo();
+	setGameField(gameJson.getGameField());
 }
 
 void GameViewControl::timerStart()
@@ -243,7 +254,7 @@ void GameViewControl::timerShot()
 	else
 	{
 		_counter = 15;
-		emit timerStart();
+		timerStop();
 	}
 	setCountdown(QString::number(_counter));
 }
@@ -266,7 +277,19 @@ QString GameViewControl::setGameControlState(const QString& state)
 	//state n x o
 	if (state == "n")
 	{
-		return _playerPawn + "_notSet";
+		if (!_playerTurn)
+		{
+			return QString("wait");
+		}
+
+		if (_playerPawn == "x")
+		{
+			return QString("cross") + QString("_notSet");
+		}
+		else
+		{
+			return QString("circle") + QString("_notSet");
+		}
 	}
 	if (state == "x")
 	{
@@ -280,11 +303,41 @@ QString GameViewControl::setGameControlState(const QString& state)
 	return "default";
 }
 
+void GameViewControl::setGameInfo()
+{
+	if (_playerTurn)
+	{
+		if (_playerPawn == "x")
+		{
+			setRoundIco("../images/x.png");
+		}
+		else
+		{
+			setRoundIco("../images/o.png");
+		}
+		setRoundTitle("Twoja \n kolej!");
+	}
+	else
+	{
+		
+		if (_playerPawn == "x")
+		{
+			setRoundIco("../images/o.png");
+		}
+		else
+		{
+			setRoundIco("../images/x.png");
+		}
+		setRoundTitle("Ruch \n przeciwnika!");
+	}
+
+}
+
 void GameViewControl::updateGameFieldPawn(int row, int column)
 {
 	QJsonArray rowArray = _gameField[row].toArray();
 
-	if (_playerPawn == "cross")
+	if (_playerPawn == "x")
 	{
 		rowArray[column] = "x";
 	}
@@ -295,6 +348,6 @@ void GameViewControl::updateGameFieldPawn(int row, int column)
 
 	_gameField[row] = rowArray;
 
-	QJsonDocument jsonDoc(rowArray);
+	QJsonDocument jsonDoc(_gameField);
 	qDebug() << jsonDoc.toJson(QJsonDocument::Compact);
 }

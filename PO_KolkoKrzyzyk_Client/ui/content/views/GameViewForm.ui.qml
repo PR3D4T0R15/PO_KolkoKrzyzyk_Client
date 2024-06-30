@@ -28,7 +28,7 @@ Item {
     property alias gameControlA1: gameControlA1
 
     property alias timeLeftValue: timeLeftValue
-    property alias roundTitle: roundTitle
+    property alias roundText: roundText
     property alias roundImage: roundImage
 
     property alias gameLeaveButton: gameLeaveButton
@@ -201,9 +201,9 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Text {
-                    id: roundTitle
+                    id: roundText
                     width: 200
-                    text: qsTr("Ruch \nprzeciwnika!")
+                    text: qsTr("Ruch \nprzeciwnika!!")
                     font.pixelSize: 32
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -219,7 +219,7 @@ Item {
                 height: 70
                 anchors.top: parent.top
                 anchors.topMargin: 110
-                source: "../images/o.png"
+                source: ""
                 anchors.horizontalCenter: parent.horizontalCenter
                 fillMode: Image.PreserveAspectFit
             }

@@ -17,6 +17,7 @@ ConnectionManager::ConnectionManager(QObject *parent): QObject(parent)
 }
 
 bool ConnectionManager::_loginStatus = false;
+QString ConnectionManager::_clientId = "";
 
 //destruktor
 ConnectionManager::~ConnectionManager()
@@ -33,6 +34,11 @@ bool ConnectionManager::getLoginStatus()
 void ConnectionManager::setLoginStatus(const bool& status)
 {
 	_loginStatus = status;
+}
+
+QString ConnectionManager::getUsername()
+{
+	return _clientId;
 }
 
 void ConnectionManager::sendDataFromQml(const QJsonDocument& jsonDoc)
@@ -57,7 +63,6 @@ void ConnectionManager::sendDataFromQml(const QJsonDocument& jsonDoc)
 
 void ConnectionManager::receivedData(const QByteArray& data)
 {
-	//TODO received data process
 	QJsonDocument requestJsonDoc = jsonDoc::JsonDoc::toJson(data);
 	QString action = jsonDoc::JsonDoc::getAction(requestJsonDoc);
 
@@ -76,6 +81,10 @@ void ConnectionManager::receivedData(const QByteArray& data)
 		QString username = accountJson.getUsername();
 
 		setClientId(username);
+	}
+	if (action == "gameInit")
+	{
+		emit changeView("GameView");
 	}
 	if (action == "game")
 	{

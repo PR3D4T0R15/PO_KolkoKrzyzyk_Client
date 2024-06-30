@@ -19,6 +19,7 @@ public:
 
 	static bool getLoginStatus();
 	static void setLoginStatus(const bool& status);
+	static QString getUsername();
 
 public slots:
 	//odbierz dane z ui
@@ -54,7 +55,7 @@ private:
 private:
 	TcpClient* _client;
 	QString _connectionId;
-	QString _clientId;
+	static QString _clientId;
 
 	bool _connectionStatus;
 	static bool _loginStatus;

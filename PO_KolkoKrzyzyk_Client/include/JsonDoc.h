@@ -111,9 +111,11 @@ namespace jsonDoc
 		QJsonArray getGameField();
 		void setGameField(const QJsonArray& gameField);
 
-		QString getStartingPawn();
-		QString getPlayerPawn(const QString& playerName);
 		int getRoundCount();
+
+		bool checkGameTurn();
+
+		QString getPlayerPawn();
 
 	private:
 		

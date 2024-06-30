@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include "include/JsonDoc.h"
+#include "include/ConnectionManager.h"
 
 class GameViewControl : public QObject
 {
@@ -100,9 +101,12 @@ signals:
 	void roundIcoChanged();
 	void countdownChanged();
 
+	void changeView(QString view);
+
 private:
 	void setGameField(const QJsonArray& gameField);
 	QString setGameControlState(const QString& state);
+	void setGameInfo();
 
 	void updateGameFieldPawn(int row, int column);
 
@@ -126,4 +130,5 @@ private:
 
 	QString _playerPawn;
 	QJsonArray _gameField;
+	bool _playerTurn;
 };
