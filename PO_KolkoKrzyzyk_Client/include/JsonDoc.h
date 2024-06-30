@@ -118,6 +118,8 @@ namespace jsonDoc
 
 		QString getPlayerPawn();
 
+		QString getWinner();
+
 	private:
 		
 	};

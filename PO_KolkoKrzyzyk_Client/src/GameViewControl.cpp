@@ -246,6 +246,11 @@ void GameViewControl::receiveData(const QJsonDocument& data)
 		_playerPawn = _gameData.getPlayerPawn();
 	}
 
+	if (!_gameData.getWinner().isEmpty())
+	{
+		changeView("EndGameView");
+	}
+
 	_gameField = _gameData.getGameField();
 	_playerTurn = _gameData.checkGameTurn();
 	timerStart();

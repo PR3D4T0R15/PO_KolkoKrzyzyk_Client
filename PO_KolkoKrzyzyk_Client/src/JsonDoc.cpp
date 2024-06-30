@@ -358,3 +358,8 @@ QString jsonDoc::Game::getPlayerPawn()
 {
 	return JsonDoc::getDataObjectStr("pawn");
 }
+
+QString jsonDoc::Game::getWinner()
+{
+	return JsonDoc::getDataObjectStr("winner");
+}
