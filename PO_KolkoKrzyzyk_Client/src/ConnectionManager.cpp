@@ -88,7 +88,7 @@ void ConnectionManager::receivedData(const QByteArray& data)
 	}
 	if (action == "game")
 	{
-		emit changeView("GameView");
+		
 	}
 
 	emit sendDataToQml(requestJsonDoc);
