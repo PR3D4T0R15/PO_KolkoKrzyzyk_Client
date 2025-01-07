@@ -12,9 +12,12 @@ import "../controls"
 
 Item {
     id: matchmakingView
+    property string cppId: "matchmakingView"
     width: 1280
     height: 720
     anchors.fill: parent
+    property alias valueQueue: valueQueue
+    property alias exitMatchmakingButton: exitMatchmakingButton
 
     Rectangle {
         id: rectangle
@@ -52,7 +55,7 @@ Item {
 
         Text {
             id: valueQueue
-            text: qsTr("5")
+            text: matchmakingViewControl.playersInQueue
             font.pixelSize: 18
         }
     }
@@ -70,7 +73,8 @@ Item {
     }
 
     AccountButton {
-        id: accountButton
+        id: exitMatchmakingButton
+        property string cppId: "exitMatchmakingButton"
         text: "Wyjdź z gry"
         anchors.top: parent.top
         anchors.topMargin: 536

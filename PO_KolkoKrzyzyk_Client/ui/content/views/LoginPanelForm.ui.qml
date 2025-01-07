@@ -12,45 +12,30 @@ import "../controls"
 
 Item {
     id: loginPanel
+    property string cppId: "loginPanel"
     width: 450
     height: 370
     property alias logInButton: logInButton
     property alias newAccountButton: newAccountButton
     property alias passField: passField
     property alias loginField: loginField
+    property alias errorText: errorText
 
-    TextField {
+    CustomTextField {
         id: loginField
-        x: 77
-        y: 82
-        width: 296
-        height: 40
         anchors.top: parent.top
         anchors.topMargin: 82
-        horizontalAlignment: Text.AlignLeft
-        placeholderTextColor: "#88373535"
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Login")
-        background: Rectangle {
-            border.color: "red"
-            border.width: 2
-        }
     }
 
-    TextField {
+    CustomTextField {
         id: passField
-        x: 77
-        y: 147
-        width: 296
-        height: 40
         anchors.top: loginField.bottom
         anchors.topMargin: 25
         anchors.horizontalCenter: parent.horizontalCenter
         placeholderText: qsTr("Hasło")
-        background: Rectangle {
-            border.color: "green"
-            border.width: 2
-        }
+        echoMode: TextInput.Password
     }
 
     Text {
@@ -58,7 +43,7 @@ Item {
         x: 123
         y: 212
         color: "#920014"
-        text: qsTr("Nieprawidłowy login lub hasło")
+        text: homeViewControl.loginInfoString
         anchors.top: passField.bottom
         anchors.topMargin: 25
         font.pixelSize: 14
@@ -77,11 +62,13 @@ Item {
 
         AccountButton {
             id: newAccountButton
+            property string cppId: "newAccountButton"
             text: qsTr("Nowe konto")
         }
 
         AccountButton {
             id: logInButton
+            property string cppId: "logInButton"
             text: qsTr("Zaloguj się")
         }
     }

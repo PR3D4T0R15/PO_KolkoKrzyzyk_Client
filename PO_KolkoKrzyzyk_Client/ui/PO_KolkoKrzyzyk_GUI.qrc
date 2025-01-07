@@ -1,44 +1,79 @@
-<!DOCTYPE RCC><RCC version="1.0">
-<qresource>
-<file>./content/controls/AboutButton.ui.qml</file>
-<file>./content/controls/AccountButton.ui.qml</file>
-<file>./content/controls/BigButton.ui.qml</file>
-<file>./content/controls/PlayButton.ui.qml</file>
-<file>./content/controls/SettingsButton.ui.qml</file>
-<file>./content/images/about.png</file>
-<file>./content/images/about_info.png</file>
-<file>./content/images/aboutvector.png</file>
-<file>./content/images/game_field.svg</file>
-<file>./content/images/linia.png</file>
-<file>./content/images/logo.png</file>
-<file>./content/images/o.png</file>
-<file>./content/images/settingsvector.png</file>
-<file>./content/images/sound_off.svg</file>
-<file>./content/images/sound_on.svg</file>
-<file>./content/images/x.png</file>
-<file>./content/MainWindow.qml</file>
-<file>./content/SecondWindow.qml</file>
-<file>./content/sounds/background1.wav</file>
-<file>./content/sounds/background2.wav</file>
-<file>./content/sounds/background3.wav</file>
-<file>./content/sounds/buttonClicked1.wav</file>
-<file>./content/sounds/buttonClicked_gameField.wav</file>
-<file>./content/sounds/defeat.wav</file>
-<file>./content/sounds/SoundsControls.qml</file>
-<file>./content/sounds/win.wav</file>
-<file>./content/views/GameView.qml</file>
-<file>./content/views/GameViewForm.ui.qml</file>
-<file>./content/views/LoginPanel.qml</file>
-<file>./content/views/LoginPanelForm.ui.qml</file>
-<file>./content/views/LoginView.qml</file>
-<file>./content/views/LoginViewForm.ui.qml</file>
-<file>./content/views/MatchmakingView.qml</file>
-<file>./content/views/MatchmakingViewForm.ui.qml</file>
-<file>./content/views/NewAccountPanel.qml</file>
-<file>./content/views/NewAccountPanelForm.ui.qml</file>
-<file>./content/views/PlayPanel.qml</file>
-<file>./content/views/PlayPanelForm.ui.qml</file>
-<file>./content/views/StartView.qml</file>
-<file>./content/views/StartViewForm.ui.qml</file>
-</qresource>
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+        <file>content/controls/AboutButton.ui.qml</file>
+        <file>content/controls/AccountButton.ui.qml</file>
+        <file>content/controls/BigButton.ui.qml</file>
+        <file>content/controls/PlayButton.ui.qml</file>
+        <file>content/controls/SettingsButton.ui.qml</file>
+        <file>content/images/about.png</file>
+        <file>content/images/about_info.png</file>
+        <file>content/images/aboutvector.png</file>
+        <file>content/images/game_field.svg</file>
+        <file>content/images/linia.png</file>
+        <file>content/images/logo.png</file>
+        <file>content/images/o.png</file>
+        <file>content/images/settingsvector.png</file>
+        <file>content/images/sound_off.svg</file>
+        <file>content/images/sound_on.svg</file>
+        <file>content/images/x.png</file>
+        <file>content/MainWindow.qml</file>
+        <file>content/sounds/background1.wav</file>
+        <file>content/sounds/background2.wav</file>
+        <file>content/sounds/background3.wav</file>
+        <file>content/sounds/buttonClicked1.wav</file>
+        <file>content/sounds/buttonClicked_gameField.wav</file>
+        <file>content/sounds/defeat.wav</file>
+        <file>content/sounds/SoundsControls.qml</file>
+        <file>content/sounds/win.wav</file>
+        <file>content/views/GameView.qml</file>
+        <file>content/views/GameViewForm.ui.qml</file>
+        <file>content/views/LoginPanel.qml</file>
+        <file>content/views/LoginPanelForm.ui.qml</file>
+        <file>content/views/MatchmakingView.qml</file>
+        <file>content/views/MatchmakingViewForm.ui.qml</file>
+        <file>content/views/NewAccountPanel.qml</file>
+        <file>content/views/NewAccountPanelForm.ui.qml</file>
+        <file>content/views/PlayPanel.qml</file>
+        <file>content/views/PlayPanelForm.ui.qml</file>
+        <file>content/views/StartView.qml</file>
+        <file>content/views/StartViewForm.ui.qml</file>
+        <file>content/controls/CircleImage.ui.qml</file>
+        <file>content/controls/CrossImage.ui.qml</file>
+        <file>content/controls/EndGameButton.ui.qml</file>
+        <file>content/controls/GameControl.qml</file>
+        <file>content/controls/GameLeaveButton.ui.qml</file>
+        <file>content/controls/SoundControl.ui.qml</file>
+        <file>content/dialogs/ExitGameDialog.qml</file>
+        <file>content/images/draw.png</file>
+        <file>content/images/gameover.png</file>
+        <file>content/images/ico256x256.png</file>
+        <file>content/images/line_diag_lr.svg</file>
+        <file>content/images/line_diag_rl.svg</file>
+        <file>content/images/line_str_hor.svg</file>
+        <file>content/images/line_str_vert.svg</file>
+        <file>content/images/sound_off.png</file>
+        <file>content/images/sound_on.png</file>
+        <file>content/images/table_image.png</file>
+        <file>content/images/win.png</file>
+        <file>content/popups/GameInfoPopup.qml</file>
+        <file>content/views/DrawPanel.ui.qml</file>
+        <file>content/views/EndGameView.qml</file>
+        <file>content/views/EndGameViewForm.ui.qml</file>
+        <file>content/views/FailPanel.ui.qml</file>
+        <file>content/views/WinPanel.ui.qml</file>
+        <file>content/controls/CustomTextField.ui.qml</file>
+        <file>content/AboutWindow.qml</file>
+        <file>content/images/game_logo.png</file>
+        <file>content/images/gameinforectangle.svg</file>
+        <file>content/images/namegame.svg</file>
+        <file>content/images/pwr_logo.png</file>
+        <file>content/scripts/CheckUsername.js</file>
+        <file>content/scripts/CheckPass.js</file>
+        <file>content/views/HomeView.qml</file>
+        <file>content/views/HomeViewForm.ui.qml</file>
+        <file>content/images/draw.gif</file>
+        <file>content/images/gameover.gif</file>
+        <file>content/images/win.gif</file>
+    </qresource>
 </RCC>
